@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+
+table.bt thead, table.bt tbody th { display:none; }
+table.bt tfoot th, table.bt tfoot td, table.bt tbody td { border:none; display:block; vertical-align:top; }
+table.bt tfoot th:before, table.bt tfoot td:before, table.bt tbody td:before { content:attr(data-th) ": "; font-weight:bold; width:6.5em; display: inline-block; }
+table.bt tfoot th.bt-hide, table.bt tfoot td.bt-hide, table.bt tbody td.bt-hide { display:none; }
+table.bt tfoot th .bt-content, table.bt tfoot td .bt-content, table.bt tbody td .bt-content { vertical-align:top; }
+.bt-wrapper.active { max-height:310px; overflow:auto; -webkit-overflow-scrolling:touch; }
+
+table.bt { background:none; border-collapse:collapse; margin:0; width:100%; }
+table.bt tr, table.bt th, table.bt td { border:none;}
+table.bt tr{display: block; padding:10px; margin-bottom:10px; background:#fff;}
+table.bt th, table.bt td { padding:10px; text-align:left; width: 100%!important; position: relative; }
+table.bt th { background:#eee; color:#666; text-transform:uppercase; }
+table.bt tr td { background:#eee; color:#666; }
+table.bt tr:nth-of-type(2n+2) td { background:#ecf0f5; }
+table.bt tfoot th, table.bt tfoot td, table.bt tbody td {padding:0!important; }
+table.bt tfoot th:before, table.bt tfoot td:before, table.bt tbody td:before { text-align: right; color:#666; width:34%; padding:2px 2%;}
+table.bt tfoot th .bt-content, table.bt tfoot td .bt-content, table.bt tbody td .bt-content { display:inline-block; width:66%; padding:2px 2%; background: #fff; }
+table.bt tfoot th:first-of-type:before, table.bt tfoot th:first-of-type .bt-content, table.bt tfoot td:first-of-type:before, table.bt tfoot td:first-of-type .bt-content, table.bt tbody td:first-of-type:before, table.bt tbody td:first-of-type .bt-content { padding-top:10px; }
+table.bt tfoot th:last-of-type:before, table.bt tfoot th:last-of-type .bt-content, table.bt tfoot td:last-of-type:before, table.bt tfoot td:last-of-type .bt-content, table.bt tbody td:last-of-type:before, table.bt tbody td:last-of-type .bt-content { padding-bottom:10px; }
+
+.bt-content em{ font-style:normal; color:#ccc; margin:0 4px;}

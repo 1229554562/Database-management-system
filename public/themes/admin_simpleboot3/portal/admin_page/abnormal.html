@@ -1,0 +1,99 @@
+<include file="public@header"/>
+<style>
+
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="nav-top">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('AdminPage/abnormal')}">运营异常企业</a></li>
+        </ul>
+    </div>
+
+    <form class="well on form-inline" method="POST" action="{:url('AdminPage/abnormal')}">
+        <div class="form-group">
+            <label>企业名称：</label>
+            <input type="text" class="form-control" name="keyword" value="{:input('request.keyword')}" placeholder="请输入企业名称">
+        </div>
+        <div class="form-group">
+            <label>录入时间：</label>
+            <input class="form-control js-bootstrap-date" name="start_time" value="{:input('request.start_time')}" size="20" autocomplete="off"  placeholder="开始时间" >
+            -
+            <input class="form-control js-bootstrap-date" name="end_time" value="{:input('request.end_time')}" size="20" autocomplete="off"  placeholder="结束时间" >
+        </div>
+
+        <div class="form-group">
+            <label>注册资本：</label>
+            <input class="form-control" name="regmany_start" value="{:input('request.regmany_start')}" size="20" autocomplete="off"  placeholder="100">万元
+            -
+            <input class="form-control" name="regmany_end" value="{:input('request.regmany_end')}" size="20" autocomplete="off"  placeholder="200">万元
+        </div>
+
+      
+        <div class="form-group">
+            <button class="btn btn-primary search-btn">搜索</button>
+            <a class="btn btn-primary search-a" href="{:url('AdminPage/abnormal')}">清除</a>
+        </div>
+    </form>
+
+ 
+    <div class="center">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th> 序号 </th>
+                <th> 企业名称 </th>
+                <th>  行业 </th>
+                <th>  注册资本(万元)</th>
+                <th> 法定代表人 </th>
+                <th> 统一社会信用代码 </th>
+                <th> 注册时间 </th>
+                <th> 登记机关 </th>
+                <th> 备注</th>
+            </tr>
+            </thead>
+                <volist name="abnormal" id="vo">
+                    <tr>
+                        <td>{$vo.id}</td>
+                    <td title="{$vo['unitname']}">
+                        <php>
+                            echo mb_substr($vo["unitname"],0,7,'utf-8');
+                            if(mb_strlen($vo["unitname"],'utf-8')>7){
+                                echo "...";
+                            }   
+                        </php>
+                    </td>
+                        <td>{$vo.industry}</td>
+                        <td>{$vo.regmany}</td>
+                        <td>{$vo.legalperson}</td>
+                        <td>{$vo.credit_code}</td>
+                        <td>{:date('Y-m-d',$vo['regtime'])}</td>
+                    <td title="{$vo['regauthority']}">
+                        <php>
+                            echo mb_substr($vo['regauthority'],0,7,'utf-8');
+                            if(mb_strlen($vo['regauthority'],'utf-8')>7){
+                                echo "...";
+                            }
+                        </php>
+                    </td>
+                        <if condition="$vo['abnormal_mark'] eq null">
+                            <td >无备注</td>
+                            <else />
+                        <td style="cursor: pointer;" title="{$vo.abnormal_mark}">
+                            <?php echo mb_substr($vo['abnormal_mark'],0,7,'utf-8'); if( mb_strlen($vo['abnormal_mark'],'utf-8')>7 ){echo '...';} ?>
+                         
+                        </td>
+                        </if>
+                    </tr>
+                </volist>
+        </table>
+
+    </div>
+    <div class="text-center">
+        <ul class="pagination">{$abnormal->render()}</ul>
+    </div>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

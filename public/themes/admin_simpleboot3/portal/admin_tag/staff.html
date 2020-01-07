@@ -1,0 +1,94 @@
+<include file="public@header"/>
+<style>
+a{
+    color:#333333;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="nav-top">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('AdminTag/staff')}">企业员工管理</a></li>
+        </ul>
+    </div>
+
+    <form class="well on form-inline" method="POST" action="{:url('AdminPage/index')}">
+        <div class="form-group">
+            <label>企业名称：</label>
+            <input type="text" class="form-control" name="keyword" value="{:input('request.keyword')}" placeholder="请输入企业名称">
+        </div>
+
+        <div class="form-group">
+            <label>注册时间：</label>
+            <input class="form-control js-bootstrap-date" name="start_time" value="{:input('request.start_time')}" size="20" autocomplete="off"  placeholder="开始时间">
+            -
+            <input class="form-control js-bootstrap-date" name="end_time" value="{:input('request.end_time')}" size="20" autocomplete="off"  placeholder="结束时间">
+        </div>
+
+        <div class="form-group">
+            <label>注册资本：</label>
+            <input type="text" class="form-control" name="regmany_start" value="{:input('request.regmany_start')}" placeholder="100">万元
+            -
+            <input type="text" class="form-control" name="regmany_end"  value="{:input('request.regmany_end')}" placeholder="200">万元
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" id="search">搜索</button>
+            <a class="btn btn-primary" id="search" href="/portal/admin_tag/staff">清除</a>
+        </div>
+      
+        <!--<button class="btn btn-primary">搜索</button>-->
+        <!--<a class="btn btn-primary" style="background: none;color:#999;" href="/portal/admin_tag/staff">清除</a>-->
+    </form>                  
+        <table class="table table-hover">
+            <thead>
+            <tr>
+               
+                <th>  序号            </th>
+                <th> 企业名称         </th>
+                <th> 法人代表         </th>
+                <th>  行业             </th>
+                <th>  注册资本(万元)    </th>
+                <th> 统一社会信用代码   </th>
+                <th> 登记机关          </th>
+                <th> 注册时间          </th>
+                <th> 操作             </th>
+            </tr>
+            </thead>
+            <foreach name="query" item="vo" key="k">
+                <tr>
+                    <td>{$k+1}</td>
+                    <td title="{$vo['unitname']}" >
+                        <a href="{:url('admin_tag/see',array('id'=>$vo['id']))}"><php>echo mb_substr($vo['unitname'],0,8,'utf-8');if(mb_strlen($vo['unitname'],'utf-8')>8){ echo "...";}</php></a>
+                    </td>
+                    <td>{$vo.legalperson}</td>
+                    <td>{$vo.industry}</td>
+                    <td>{$vo.regmany}</td>
+                    <td>{$vo.credit_code} </td>
+                    <td title="{$vo['regauthority']}">
+                        <php>
+                            echo mb_substr($vo['regauthority'],0,7,'utf-8');
+                            if(mb_strlen($vo['regauthority'],'utf-8')>7){
+                                echo "...";
+                            }
+                        </php>
+                    </td>
+                    <td>{:date('Y-m-d',$vo.regtime)}</td>
+                    <td >
+                        <a href="{:url('AdminCategory/report',array('qy_id'=>$vo['id']))}"  class="btn btn-danger btn-sm shiny" style="margin-right:3px;background:green;border:none;">
+                            <i class="fa fa-edit"></i> 员工报备
+                        </a>
+                    </td>
+                </tr>
+            </foreach> 
+        </table>
+        <div class="text-center">
+                <ul class="pagination">{$query->render()}</ul>
+        </div>     
+   
+    
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

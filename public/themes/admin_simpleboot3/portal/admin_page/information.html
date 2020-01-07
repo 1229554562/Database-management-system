@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style>
+	.left{width:300px;height:300px;float:left;margin-right: 30px}
+	.right{width:400px;height:300px;float:left;}
+</style>
+<script type="text/javascript">
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: '{$Request.module}'/*当前应用名*/
+    };
+</script>
+<script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
+<script src="__STATIC__/js/wind.js"></script>
+<script src="__TMPL__/public/assets/js/bootstrap.min.js"></script>
+<script src="__TMPL__/public/assets/simpleboot3/js/jquery.basictable.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    Wind.css('artDialog');
+    Wind.css('layer');
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+        $("li.dropdown").hover(function () {
+            $(this).addClass("open");
+        }, function () {
+            $(this).removeClass("open");
+        });
+        $('.table').basictable();
+    });
+</script>
+</head>
+<body>
+	<div class="wrap">
+	<form class="js-ajax-form" method="POST" action="{:url('AdminPage/editcompany')}">
+	<div style="padding:20px;margin-left:50px">
+		<div class="left" >
+			<div style="width:300px;height:40px;">
+				<span style="font-weight: bold">行业</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+				<input type="text" name="industry" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.industry}" disabled="disabled">
+			</div>
+
+			<div style="width:300px;height:40px">
+				<span style="font-weight: bold">企业名称</span>&nbsp;&nbsp;&nbsp;
+				<input type="text" name="unitname" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.unitname}" disabled="disabled">
+			</div>
+
+			<div style="width:300px;height:40px">
+				<span style="font-weight: bold">注册资本</span>&nbsp;&nbsp;&nbsp;
+				<input type="number" name="registermany" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.registermany}" disabled="disabled">
+			</div>
+
+			<div style="width:300px;height:40px">
+				<span style="font-weight: bold">现注册地</span>&nbsp;&nbsp;&nbsp;
+				<input type="text" name="Registeredplace" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.registeredplace}" disabled="disabled">
+			</div>
+
+			<div style="width:300px;height:40px">
+				<span style="font-weight: bold">经营内容</span>&nbsp;&nbsp;&nbsp;
+				<input type="text" name="Management" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.management}" disabled="disabled">
+			</div>
+
+			<div style="width:300px;height:40px">
+				<span style="font-weight: bold">法人代表</span>&nbsp;&nbsp;&nbsp;
+				<input type="text" name="Legalperson" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.legalperson}" disabled="disabled">
+			</div>
+
+			<div style="width:300px;height:40px">
+				<span style="font-weight: bold">客户来源</span>&nbsp;&nbsp;&nbsp;
+				<input type="text" name="Customer" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.customer}" disabled="disabled"> 
+			</div>			
+		</div>
+
+
+		<div class="right">
+			<div style="width:290px;height:40px">
+				<span style="font-weight: bold">联系人</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" name="Contacts" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.contacts}" disabled="disabled">
+			</div>
+			<div style="width:300px;height:40px">
+				<span style="font-weight: bold">联系方式</span>&nbsp;&nbsp;&nbsp;
+				<input type="number" name="information" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.information}" disabled="disabled">
+			</div>
+				<if condition="$num == 1">				
+				<div style="width:300px;height:70px;margin-bottom: 5px;position: relative">				
+					<span style="font-weight: bold;position:absolute;top:0;left:0">参加活动</span>&nbsp;&nbsp;&nbsp;				
+					<textarea rows="3" name="situation" cols="20" style="border-radius: 5px;position:absolute;top:0;right:55px;border: 0px #3084E6 solid;height: 60px"  disabled="disabled">
+						<volist name="activity" id="ac" key="k">
+						{$k}、参加{$ac.title}活动，{$ac.count}次
+						</volist>
+					</textarea>
+				</div>
+				</if>
+			<div style="width:300px;height:50px;margin-bottom: 5px;position: relative">
+				<span style="font-weight: bold;position:absolute;top:0;left:0">支持情况</span>&nbsp;&nbsp;&nbsp;
+				<textarea rows="3" name="situation" cols="20" style="border-radius: 5px;position:absolute;top:0;right:55px;border: 0px #3084E6 solid;height: 40px" value="{$edit.situation}" disabled="disabled">{$edit.situation}</textarea>
+			</div>
+			<div style="width:300px;height:40px">
+				<span style="font-weight: bold">对接人</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" name="Pickpeople" style="border-radius: 5px;border: 0px #3084E6 solid;height: 25px" value="{$edit.pickpeople}" disabled="disabled">
+			</div>
+
+		</div>
+	
+	</form>
+</div>
+</div>
+</body>
+<script src="__STATIC__/js/admin.js"></script>
+</html>

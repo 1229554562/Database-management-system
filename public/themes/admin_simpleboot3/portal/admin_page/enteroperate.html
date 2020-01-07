@@ -1,0 +1,134 @@
+<include file="public@header"/>
+<style>
+    a{
+        color:#333333;
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="nav-top">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('AdminPage/enteroperate')}">企业经营管理</a></li>
+        </ul>
+    </div>
+
+    <form class="well on form-inline" method="POST" action="{:url('AdminPage/enteroperate')}">
+        <div class="form-group">
+            <label>企业名称：</label>
+            <input type="text" class="form-control" name="keyword" style="width: 168px;" value="{:input('request.keyword')}" placeholder="请输入企业名称">
+        </div>
+
+        <div class="form-group">
+            <label>注册时间：</label>
+            <input class="form-control js-bootstrap-date" name="start_time" value="{:input('request.start_time')}" size="20" autocomplete="off"  placeholder="开始时间">
+            -
+            <input class="form-control js-bootstrap-date" name="end_time" value="{:input('request.end_time')}" size="20" autocomplete="off"  placeholder="结束时间" >
+        </div>
+        <div class="form-group">
+            <label>注册资本：</label>
+            <input type="text" class="form-control" name="regmany_start" value="{:input('request.regmany_start')}" placeholder="100">
+            -
+            <input type="text" class="form-control" name="regmany_end"  value="{:input('request.regmany_end')}" placeholder="200">
+        </div>
+        <div class="form-group">
+            <label>总利润：</label>
+            <input type="text" class="form-control" name="profit_start"  value="{:input('request.profit_start')}" placeholder="100">
+            -
+            <input type="text" class="form-control" name="profit_end"  value="{:input('request.profit_end')}" placeholder="200">
+        </div>
+        <div class="form-group">
+            <label>报备情况：</label>
+            <select class="form-control" name="is_report">
+                <option value="">请选择</option>
+                <php>
+                    $symbol = trim(input('request.is_report'));
+                    $selected = '';
+                    if($symbol=='0'){
+                    $selected = "selected";
+                    }
+                </php>
+                <option value="0" {$selected}>未报备</option>
+                <php>
+                    $symbol = trim(input('request.is_report'));
+                    $selected = '';
+                    if($symbol=='1'){
+                    $selected = "selected";
+                    }
+                </php>
+                <option value="1" {$selected}>已报备</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" id="search">搜索</button>
+            <a class="btn btn-primary" id="search"  href="/portal/admin_page/index">清除</a>
+        </div>
+    </form>
+    <div class="center">
+        <form class="js-ajax-form well " method="post" action="{:url('AdminPage/importExcel')}">
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>  序号</th>
+                    <th> 企业名称</th>
+                    <th>  行业</th>
+                    <th> 注册资本(万元)</th>
+
+                    <th> 统一社会信用代码</th>
+                    <th> 注册时间</th>
+                    <th> 总利润（万元） </th>
+
+                    <th> 本季度报备</th>
+                    <th> 操作</th>
+                </tr>
+                </thead>
+                <if condition="$count eq 0">
+                    <tr style="margin-top: 10px">
+                        <td colspan="10"><span style="font-size: 18px; color: red;">暂无数据！</span></td>
+                    </tr>
+                    <else/>
+                    <foreach name="query" id="vo">
+                        <tr style="margin-top: 10px">
+                            <td>{$vo.id}</td>
+                            <td title="{$vo['unitname']}">
+                               <a href="{:url('admin_tag/see',array('id'=>$vo['id']))}"> 
+                                <php>echo mb_substr($vo['unitname'],0,20,'utf-8');if(mb_strlen($vo['unitname'],'utf-8')>20){ echo "...";}</php>
+                                </a>
+                            </td>
+                            <td>{$vo.industry}</td>
+                            <td>{$vo.regmany}</td>
+
+                            <td>{$vo.credit_code} </td>
+                            <td>{:date('Y-m-d',$vo['regtime'])}</td>
+
+                            <td>{$vo.sum_profit}</td>
+
+                            <td>
+                                <if condition="$vo['is_report']==0">
+                                    <span style="color: red;">未报备</span>
+                                    <else/>
+                                    <span>已报备</span>
+                                </if>
+                            </td>
+                            <td >
+                                <a href="{:url('AdminPage/operate',array('enter_id'=>$vo['id']))}" class="btn btn-danger btn-sm shiny" style="margin-right:3px;background:green;border:none;">
+                                    <i class="fa fa-edit"></i> 经营报备
+                                </a>
+                            </td>
+                        </tr>
+                    </foreach>
+                </if>
+            </table>
+    </div>
+    <div class="text-center">
+        <ul class="pagination">{$query->render()}</ul>
+    </div>
+
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script type="application/javascript">
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<include file="public@header"/>
+<style>
+
+</style>
+<body>
+<div class="wrap">
+    <div class="nav-top">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('admin_tag/finance')}">企业经营管理</a></li>
+        </ul>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('admin_category/people_finance')}">企业负债</a></li>
+        </ul>
+    </div>
+
+    <!-- <form class="well form-inline margin-top-20" method="POST" action="{:url('AdminCategory/report')}">
+        <label>员工姓名：</label>
+        <input type="text" class="form-control" name="keyword" style="width: 200px;"
+               value="{:input('request.keyword')}" placeholder="请输入员工姓名">       
+        <button class="btn btn-primary" id="search">搜索</button>
+        <a class="btn btn-primary" id="search" style="background: none;color:#999;" href="#"">清除</a>
+    </form> -->
+
+
+    <form class="js-ajax-form well" method="post" action="{:url('AdminTag/ceshi')}">
+       
+        <div class="table-top-left">
+            <div class="col-md-6 col-sm-10">
+                <input id="excel-1" type="hidden" name="excel_url" >
+                <input  id="excel-1-name" type="text" name="excel_name" title="Excel名称">
+                <a href="javascript:uploadOne('Excel上传','#excel-1','file');" class="btn btn-sm btn-default">负债文件上传</a>
+            </div>
+              
+            <div class="form-group" >
+                <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-danger btn-sm js-ajax-submit" >Excel导入</button>
+                </div>
+            </div>
+        </div> 
+
+        <div class="table-actions">
+            <a class="btn btn-danger btn-sm js-ajax-submit"   href="{:url('AdminNewup/finance_upload')}"
+            >下载excel模板
+            </a>
+        </div>
+        
+        
+        <table class="table table-hover">
+            <thead>
+            <tr>
+
+                <th> 时间</th>
+                <th> 流动资产合计(元)</th>
+                <th> 非流动资产合计(元)</th>
+                <th> 资产总计(元)</th>
+                <th> 流动负债合计(元)</th>
+                <th> 非流动负债合计(元)</th>
+                <th> 负债合计(元)</th>
+                <th> 所有者权益合计(元)</th>
+                <th> 负债和所有者权益总计(元)</th>
+                <th class="caozuo"> 操作</th>
+            </tr>
+            </thead>
+                <foreach name="fres" item="fo" key="k">
+                <tr>
+                    <td>{:date('Y/m',$fo['time'])}</td>
+                    <td>{$fo.sum_flow_asets|default='0.00'}</td>
+                    <td>{$fo.sum_ord_fixed|default='0.00'}</td>
+                    <td>{$fo.sum_assets|default='0.00'}</td>
+                    <td>{$fo.sum_flow_payment|default='0.00'}</td>
+                    <td>{$fo.sum_fixed_liabilities|default='0.00'}</td>
+                    <td>{$fo.sum_liabilities|default='0.00'}</td>
+                    <td>{$fo.sum_rights_interests|default='0.00'}</td>
+                    <td>{$fo.sum_liabilities_equity|default='0.00'}</td>
+                    <td>
+                        <a class="btn btn-danger btn-sm shiny" style="margin-right:3px;background:green;border:none;" href="javascript:parent.openIframeLayer('{:url('AdminCategory/see_finance',array('id'=>$fo['id']))}','查看企业负载',{area: ['980px', '601px']});"                            
+                            class="btn btn-primary btn-sm shiny" style="width:60px;">
+                            <i class="fa fa-edit"></i> 查看详情
+                        </a>
+                        <!-- <a href="javascript:parent.openIframeLayer('{:url('AdminCategory/editfinance',array('id'=>$fo['id']))})','编辑负债',{area: ['880px', '601px']});"                            
+                            class="btn btn-primary btn-sm shiny" style="width:60px;">
+                            <i class="fa fa-edit"></i> 编辑
+                        </a> -->
+
+                    </td>
+                </tr>
+                </foreach>
+
+        </table>
+        <div class="text-center">
+                <ul class="pagination">
+
+                </ul>
+        </div>     
+   
+    
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

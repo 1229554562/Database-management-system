@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>瞪羚汇会员企业管理系统</title>
+    <link rel="stylesheet" href="__STATIC__/DLH/css/common.css">
+    <link rel="stylesheet" href="__STATIC__/DLH/css/public.css">
+    <link rel="stylesheet" href="__STATIC__/DLH/css/actmore.css">
+    <style>
+        #pagelist{
+            margin: 20px 0;
+            display: flex;
+            /* justify-content: space-between; */
+        }
+        #pagebox{
+            margin:0 auto;
+        }
+        #pagebox a{
+            color: #666;
+            padding: 0 6px;
+        }
+        .active{
+            color: red!important;
+        }
+    </style>
+    <script src="__STATIC__/DLH/js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div id="box">
+            <include file="public@header"/>
+    
+        <div id="main">
+            <div class="innerwidth">
+                <p id="menu">
+                    <a href="{:url('Index/index')}">首页</a>&gt;
+                    <a href="{:url('Newsinfo/newsinfo')}">新闻列表页</a>
+                </p>
+                <div id="actbox">
+                    <div id="acttop">
+                        <p>为您找到<span class="actnumber">{$num}</span>个活动</p>
+                    </div>
+                    <div id="actlist">
+                            <volist name='list' id='news'>
+                        <a class="actives flex" href="{:url('Newsinfo/newsinfo',array('id'=>$news.id))}">
+                            <img src="__STATIC__/DLH/img/news.png" alt="">
+                            <div class="activeinfo">
+                                <p class="activetitle">{$news.title}</p>
+                                <p class="activetime">2019年09月04日</p>
+                                <p class="activeintro">{$news.content|mb_substr=0,125,'utf-8'}</p>
+                            </div>
+                        </a>
+                        </volist>
+                    </div>
+                </div>
+               <div id="pagelist">
+                   <div id="pagebox" class="flex">{$list->render(3)}</div>
+               </div>
+            </div>
+        </div>
+        <div id="footer">
+            <p>Copyright © 2019 科技企业加速器瞪羚汇   版权所有</p>
+        </div>
+        <div id="shadowbox" class="hidd">
+            <div id="changebox" class="hidd">
+                <div id="changeboxtitle">
+                    <p>修改密码</p>
+                </div>
+                <div class="changeboxlist flex">
+                    <p>原密码</p>
+                    <input id="prepassword" type="password">
+                </div>
+                <div class="changeboxlist flex">
+                    <p>新密码</p>
+                    <input id="newpassword" type="password">
+                </div>
+                <div class="changeboxlist flex">
+                    <p>确认密码</p>
+                    <input id="confpassword" type="password">
+                </div>
+                <div id="confchange">确认修改</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/index.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

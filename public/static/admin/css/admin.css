@@ -1,0 +1,27 @@
+.index{
+	background-color: #0B5F9F;
+}
+.navbar-default .navbar-brand{
+	color:#fff;
+}
+.navbar-default .navbar-brand:hover{
+	color:#fff;
+	font-size:20px;
+}
+.navbar-default .navbar-nav>li>a{
+	color:#fff;
+}
+.container{
+	margin:0px 30px;
+	width:auto;
+
+}
+.list-group{
+	display:none;
+}
+.tot{
+	line-height:34px;
+}
+.pagination{
+	margin:0px auto;
+}

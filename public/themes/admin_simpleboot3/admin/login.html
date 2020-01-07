@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>111</title>
+<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="author" content="团尚科技-http://www.tuanshangkeji.com" />
+<!-- HTML5 shim for IE8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="__TMPL__/public/assets/js/html5shiv.js"></script>
+<![endif]-->
+<link href="__TMPL__/public/assets/themes/{:cmf_get_admin_style()}/bootstrap.min.css" rel="stylesheet">
+<link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="__TMPL__/public/assets/themes/{:cmf_get_admin_style()}/login.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="__TMPL__/public/assets/js/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if (window.parent !== window.self) {
+        document.write              = '';
+        window.parent.location.href = window.self.location.href;
+        setTimeout(function () {
+            document.body.innerHTML = '';
+        }, 0);
+    }
+</script>
+<script type="text/javascript">
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: ''/*当前应用名*/
+    };
+</script>
+</head>
+<body>
+<div class="login-wrap">
+    <img src="__TMPL__/public/assets/images/loginBg.jpg" class="loginBg" alt="" />
+    <div class="login-head"></div>
+    <div class="wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="logo"><img src="__TMPL__/public/assets/images/logo.png" alt="" ></div>
+                </div>
+                <div class="col-md-12 lhg col-xs-12">
+                    <div class="loginImg col-md-12 col-xs-12">
+                        <div id="sky">
+                            <div class="img img1"><img src="__TMPL__/public/assets/images/c01.png" alt="" /></div>
+                            <div class="img img2"><img src="__TMPL__/public/assets/images/c02.png" alt="" /></div>
+                            <div class="img img3"><img src="__TMPL__/public/assets/images/c03.png" alt="" /></div>
+                        </div>
+                    </div>
+                    <div class="logoBox">
+                        <h1 class="text-center" style="color: #333;font-size: 24px">企业信息管理参数</h1>
+                        <form class="js-ajax-form" action="{:url('public/doLogin')}" method="post">
+                            <div class="form-group">
+                                <i class="ico01"></i>
+                                <input type="text" id="input_username" class="form-control" name="username"
+                                       placeholder="{:lang('USERNAME_OR_EMAIL')}" title="{:lang('USERNAME_OR_EMAIL')}" value="{:cookie('admin_username')}" data-rule-required="true" data-msg-required="">
+                            </div>
+                            <div class="form-group">
+                                <i class="ico02"></i>
+                                <input type="password" id="input_password" class="form-control" name="password" placeholder="{:lang('PASSWORD')}" title="{:lang('PASSWORD')}" data-rule-required="true" data-msg-required="">
+                            </div>
+                            <div class="form-group">
+                                <i class="ico03"></i>
+                                <input type="text" name="captcha" placeholder="验证码" class="form-control captcha">
+                                <captcha height="32" width="150" font-size="18" style="cursor: pointer;position:absolute;right:1px;top:1px;"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="redirect" value="">
+                                <button class="btn btn-primary btn-block js-ajax-submit" type="submit" style="margin-left: 0px;"
+                                        data-loadingmsg="{:lang('LOADING')}">
+                                    {:lang('LOGIN')}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
+<script src="__STATIC__/js/wind.js"></script>
+<script src="__STATIC__/js/admin.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.login-wrap').width($(window).width());
+        $('.login-wrap').height($(window).height());
+        $('.lhg').height($(window).height()-90);
+
+        $(".img").each(function(){
+            var $this=$(this);
+            $this.animate({"marginTop":0,"opacity":1});
+        });
+        $('#sky').on('mousemove', function(e) {
+            var offsetX = e.clientX / window.innerWidth - 0.5,
+                offsetY = e.clientY / window.innerHeight - 0.5;
+            var _left = -40 * offsetX;    //如果想动的幅度更大，可以调整 -40 的值
+            var _top = -40 * offsetY;     //如果想动的幅度更大，可以调整 -40 的值
+            //应用公式
+            $('#sky .img1').css('left',60+_left*1.5).css('top',_top*1.5);
+            $('#sky .img2').css('left',60+_left*3).css('top',_top*3);
+            $('#sky .img3').css('left',50+_left*1.5).css('top',_top*1.5);
+        });
+        $("#sky").on("mouseout",function(){
+            $('#sky .img1').css('left',60).css('top',0);
+            $('#sky .img2').css('left',60).css('top',0);
+            $('#sky .img3').css('left',60).css('top',0);
+        });
+    });
+    (function () {
+        document.getElementById('input_username').focus();
+    })();
+</script>
+</body>
+</html>

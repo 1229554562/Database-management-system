@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="__STATIC__/public/bs/css/bootstrap.min.css">
+<script src="__STATIC__/public/bs/js/jquery.min.js"></script>
+<script src="__STATIC__/public/bs/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="__STATIC__/admin/css/admin.css">
+<div class="col-md-13">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-primary" ><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;<a href="{:url('add')}" style="color:white">添加文章</a></button>
+			<div class="pull-right" style="margin-left:30px;"><p class="tot">共有数据:&nbsp;<b id="tot">{$count}</b>&nbsp;条</p></div>
+			<form class="form-inline pull-right" action="{:url('index')}" role="form" >
+				<div class="form-group">
+					<input type="text" name="search" class="form-control" placeholder="请输入要搜索内容">
+				</div>
+				<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search">&nbsp;搜索</span></button>
+			</form>
+		</div>
+		<div class="panel-body">
+            <table class="table table-bordered table-hover">
+                 <tr>
+
+                     <th>序号</th>
+                     <th>文章标题</th>
+                     <th>文章图片</th>
+                     <th>新闻简介</th>
+                     <th>添加时间&nbsp;|&nbsp;修改时间</th>
+					 <th>作者</th>
+					 <th>状态</th>
+                     <th>操作</th>
+                 </tr> 
+
+					<volist name="data" id="data">
+                <tr>
+
+                	<td>{$data.id}</td>
+                	<td>{$data.title}</td>
+                	<td><img src="__STATIC__/uploads/news/{$data.img}" alt="" height="50px" width="80px"></td>
+					<td>{$data.content|mb_substr=0,10,'utf-8'}</td>
+					<td>{$data.time|date="Y-m-d H:i:s",###}</td>
+					<td>{$data.author}</td>
+					<td>
+						<if condition="$data.status eq 1">
+							<button class="btn btn-info"  onclick="status(this,{$data.id},{$data.status})">显示</button>
+							<else />
+							<button class="btn btn-danger" onclick="status(this,{$data.id},{$data.status})">不显示</button>
+						</if>
+					</td>
+                	<td>
+						<a class="" href="{:url('update',array('id'=>$data.id))}"><button type="button" class="btn btn-primary">修改</button></a>&nbsp;<a class="" onclick="return confirmd()" href="{:url('del',array('id'=>$data.id))}" ><button type="button" class="btn btn-danger" >删除</button></a>
+					</td>
+                </tr>
+				</volist>
+            </table>  
+        </div>
+		<div class="panel-footer">
+			<ul class="pagination" >{$page}</ul>
+		</div>
+	</div>
+</div>
+<script>
+	//状态的改变
+	function status(obj,id,val) {
+		if (val){
+			$.post("{:url('ajax_status')}",{id:id,status:0},function (data) {
+				$(obj).html("不显示");
+				$(obj).attr('class','btn btn-danger');
+				$(obj).attr("onclick","status(this,"+id+",0)");
+			})
+		} else {
+			$.post("{:url('ajax_status')}",{id:id,status:1},function (data) {
+				$(obj).html("显示");
+				$(obj).attr('class','btn btn-info');
+				$(obj).attr("onclick","status(this,"+id+",1)");
+			})
+		}
+	}
+	function confirmd() {
+		var msg = "确定删除该条数据？";
+		if (confirm(msg)==true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+</script>
+

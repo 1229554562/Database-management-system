@@ -1,0 +1,118 @@
+<include file="public@header"/>
+<style>
+
+</style>
+<body>
+<div class="wrap">
+    <div class="nav-top">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('AdminTag/staff')}">企业员工管理</a></li>
+        </ul>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('AdminCategory/report',array('qy_id'=>$qy_id))}">{$qy_name}</a></li>
+        </ul>
+    </div>
+
+    <form class="well form-inline margin-top-20" method="POST" action="{:url('AdminCategory/report')}">
+        <label>员工姓名：</label>
+        <input type="text" class="form-control" name="keyword" style="width: 200px;"
+               value="{:input('request.keyword')}" placeholder="请输入员工姓名">       
+        <button class="btn btn-primary" id="search">搜索</button>
+        <a class="btn btn-primary" id="search" style="background: none;color:#999;" href="{:url('AdminCategory/report')}"">清除</a>
+    </form>
+
+
+    <form class="js-ajax-form well" method="post" action="{:url('AdminCategory/importExcel')}">
+        <div class="table-actions">
+            <a class="btn btn-primary add btn-sm shiny"   href="javascript:parent.openIframeLayer('{:url('AdminCategory/addreport',array('qy_id'=>$qy_id))}','添加员工信息',{area: ['860px', '601px']});"
+                 >添加
+            </a>
+        </div>
+        <div class="table-top-left">
+            <div class="col-md-6 col-sm-10">
+                <input id="excel-1" type="hidden" name="excel_url" >
+                <input  id="excel-1-name" type="text" name="excel_name" title="Excel名称">
+                <a href="javascript:uploadOne('Excel上传','#excel-1','file');" class="btn btn-sm btn-default">Excel文件上传</a>
+            </div>
+              
+            <div class="form-group" >
+                <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-danger btn-sm js-ajax-submit" >Excel导入</button>
+                </div>
+            </div>
+        </div> 
+     
+        <div class="table-actions">
+            <a class="btn btn-danger btn-sm js-ajax-submit"   href="{:url('AdminCategory/down_model')}"
+            >下载excel模板
+            </a>
+        </div>
+        
+        
+        <table class="table table-hover">
+            <thead>
+            <tr>
+               
+                <th>  序号</th>
+                <th> 姓名</th>
+                <th>  证件类型</th>
+                <th>  证件号码</th>
+                <th> 行政职务</th>
+                <th> 技术职务</th>
+                <th> 在职时长</th>
+                <th> 联系电话</th>
+                <th> 电子邮箱</th>
+                <th> 是否股东</th>
+                <th class="caozuo"> 操作</th>
+            </tr>
+            </thead>
+            <foreach name="data" item="vo" key="k">
+                <tr>
+                    <td>{$k + $num}</td>
+                    <td>{$vo.name}</td>
+
+                    <if condition="$vo['card_type'] eq 0">
+                        <td>身份证</td>
+                    </if>
+                    <if condition="$vo['card_type'] eq 1">
+                        <td>驾驶证</td>
+                    </if>
+                    <if condition="$vo['card_type'] eq 2">
+                        <td>护照</td>
+                    </if>
+
+                    <td>{$vo.card_number}</td>
+                    <td>{$vo.administrate}</td>
+                    <td>{$vo.technical}</td>
+                    <td>{$vo.work_time}</td>
+                    <td>{$vo.mobile} </td>
+                    <td>{$vo.email}</td>
+                    <if condition="$vo['is_shareholder'] eq 1">
+                        <td>是</td>
+                        <else />
+                        <td style="color:red">否</td>
+                    </if>
+                    <td>
+                            <a href="javascript:parent.openIframeLayer('{:url('AdminCategory/editreport',array('id'=>$vo['id']))}','修改员工信息',{area: ['860px', '601px']});"
+                            
+                                class="btn btn-primary btn-sm shiny" style="width:80px;">
+                                <i class="fa fa-edit"></i> 编辑
+                            </a>
+
+                            <a href="/portal/admin_category/del?id={$vo['id']}" onClick="return confirm('确定删除此员工?')" class="btn btn-danger btn-sm shiny">
+                                <i class="fa fa-trash-o"></i> 删除
+                            </a>
+                    </td>
+                </tr>
+            </foreach>
+
+        </table>
+        <div class="text-center">
+                <ul class="pagination">{$data->render()}</ul>
+        </div>     
+   
+    
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

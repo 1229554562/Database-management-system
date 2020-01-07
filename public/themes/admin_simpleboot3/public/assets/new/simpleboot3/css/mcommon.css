@@ -1,0 +1,18 @@
+﻿@charset "utf-8";
+
+@media screen and (max-width: 425px) {
+ .nav-tabs > li > a{ border-radius: 30px; padding: 8px 10px; font-size: 12px;}
+ .nav-tabs{border-bottom: 1px solid #e0e4e8;padding-bottom: 15px;}
+ .well{ padding: 0; border-radius: 0; border:0; background: none;}
+ .form-inline{ padding-bottom: 15px;}
+ .form-control{border-radius: 20px; width: 100%!important; border:1px solid #ddd; margin: 5px 0;}
+ .mhide{display: none;}
+ .mspan{background:#e5e5e5;display:block;padding:8px;text-align:center;border-radius:20px;margin: 0 2%;}
+ .btn{ width: 45%; margin:5px 2%; border-radius: 20px;}
+ .margin-top-20{ margin-top: 5%!important;}
+ .treeTable tr td .expander{ position: absolute; left:10%; top:10px; display: block; width: 20px; height: 20px;}
+ .nav-pills > li > a{background: #eee;border-radius: 20px;border: 0;padding: 5px 10px; margin: 0 5px 5px 0;}
+ .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover, .nav-pills > li > a:hover{background: #1296db;color: #fff;border-radius: 20px;border: 0;}
+ .panel-primary > .panel-body .col-md-8{padding: 0 15px;}
+ .panel-primary > .panel-body .col-md-4, .panel-primary > .panel-body .col-md-12{ padding: 5px 15px;}
+}

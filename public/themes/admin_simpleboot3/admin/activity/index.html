@@ -1,0 +1,212 @@
+<link rel="stylesheet" href="__STATIC__/public/bs/css/bootstrap.min.css">
+<script src="__STATIC__/public/bs/js/jquery.min.js"></script>
+<script src="__STATIC__/public/bs/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="__STATIC__/admin/css/admin.css">
+<div class="col-md-13">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button class="btn btn-danger" onclick="delAll()"> <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;批量删除</button>
+			<button class="btn btn-primary" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加活动管理</button>
+			<div class="pull-right" style="margin-left:30px;"><p class="tot">共有数据:&nbsp;<b id="tot">{$count}</b>&nbsp;条</p></div>
+			<form class="form-inline pull-right" action="{:url('index')}" role="form" >
+				<div class="form-group">
+					<input type="text" name="search" class="form-control" placeholder="请输入要搜索内容">
+				</div>
+<!--				<div class="form-group">-->
+<!--					<input type="text" name="search" class="form-control" placeholder="请输入时间">-->
+<!--				</div>-->
+				<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search">&nbsp;搜索</span></button>
+			</form>
+		</div>
+		<div class="panel-body">
+            <table class="table table-bordered table-hover">
+                 <tr>
+                    <th><input type="checkbox" name="checkAll" class="checkd"></th>
+                     <th>序号</th>
+                     <th>活动名称</th>
+                     <th>活动简介</th>
+                     <th>创建时间</th>
+                     <th>状态</th>
+                     <th>操作</th>
+                 </tr>
+              <volist name="dat" id="dat">
+				<tr id="tr{$dat.id}">
+					<td><input type="checkbox" name="check" value="{$dat.id}" class="checks"></td>
+					<td>{$dat.id}</td>
+					<td>{$dat.title}</td>
+					<td>{$dat.content|mb_substr=0,10,'utf-8'}</td>
+					<td>{$dat.time|date="Y-m-d H:i:s",###}</td>
+					<td>
+						<if condition="$dat.status eq 1">
+						<button class="btn btn-info"  onclick="status(this,{$dat.id},{$dat.status})">显示</button>
+						<else />
+						<button class="btn btn-danger" onclick="status(this,{$dat.id},{$dat.status})">不显示</button>
+						</if>
+					</td>
+					<td>
+						<div style="float:left;">
+							<a style="width: 50px;height:30px;background:#5BC0DE;color:mintcream;margin-right:10px;padding:1px;border-radius:4px;cursor: pointer;"
+								href="javascript:parent.openIframeLayer('{:url('Activity/see',array('id'=>$dat["id"]))}','查看详情',{area: ['400px', '401px']});" onclick="<script>window.open()</script>">
+							
+								查看详情
+							</a>
+						</div>&nbsp  |
+						<span class="glyphicon glyphicon-trash" id="activityDelete" onclick="del(this,{$dat.id})"></span> &nbsp  |
+						<span class="glyphicon glyphicon-tag"  onclick="find({$dat.id}) " data-toggle="modal" data-target="#edit"></span> &nbsp  |
+						<a href="javascript:parent.openIframeLayer('{:url('Activity/addetp',array('id'=>$dat["id"]))}','活动增添企业',{area: ['400px', '401px']});" onclick="<script>window.open()</script>"><span class="glyphicon glyphicon-tag" > </span></a>
+					</td>
+				</tr>
+				</volist>
+            </table>
+        </div>
+		<div class="panel-footer">
+			<ul class="pagination" >{$page}</ul>
+		</div>
+	</div>
+</div>
+<!-- 添加弹出框 -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">关联企业</h4>
+      </div>
+      <div class="modal-body">
+		  <form action="" method="post" onsubmit="return false" id="addForm">
+<!--		  <form action="{:url('admin/Activity/add')}" method="post" class="js-ajax-form" id="addForm">-->
+			<div class="form-group">
+				<label for="">活动名称</label>
+				<input type="text" name="title" class="form-control" id="">
+			</div>
+			<div class="form-group">
+				<label for="">活动简介</label>
+				<textarea name="content" class="form-control"  rows="10" ></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="">状态</label>
+				<br>
+				<input type="radio" name="status" value="1" id="">显示
+				<input type="radio" name="status" value="0" checked id="">不显示
+			</div>
+			<div class="form-group">
+<!--			   <button type="button" class="btn-info">提交</button>-->
+<!--				<button type="reset" class="btn btn-danger">重置</button>-->
+				<input value="提交" class="btn btn-success" onclick="add()">
+				<input type="reset" value="重置" class="btn btn-danger">
+			</div>
+       	</form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- 修改弹出框 -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">修改活动管理</h4>
+      </div>
+      <div class="modal-body">
+       		<form action="" onsubmit="return false" id="updateForm">
+
+       		</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script>
+	//添加
+    function add() {
+        str = $('#addForm').serialize();
+		// console.log(str);
+        $.post("{:url('ajax_add')}",{str:str},function (data) {
+        	// console.log(data);
+        	// alert(data);
+        	// return;
+        	if (data.code!=1){
+				$('.table').append(data);
+				$('.close').click();
+				num = $('#tot').html();
+				num = parseInt(num);
+				$('#tot').html(++num);
+				window.location.reload();
+			} else {
+        		alert(data.error);
+			}
+        })
+    }
+    //删除
+	function del(obj,id) {
+              if (window.confirm('确定删除吗?')){
+				  $.post("{:url('ajax_del')}",{id:id},function (data) {
+					  if (data==1){
+						  $(obj).parent().parent().remove();
+						  num = $('#tot').html();
+						  num = parseInt(num);
+						  $('#tot').html(--num);
+						  alert("删除成功");
+					  }
+				  });
+			  }else {
+              	return false;
+			  }
+	}
+	//查找
+	function find(id) {
+		$.post("{:url('ajax_find')}",{id:id},function (data) {
+         $('#updateForm').html(data);
+		})
+	}
+	//修改
+	function update(id) {
+		str = $('#updateForm').serialize();
+		$.post("{:url('ajax_update')}",{str:str},function (data) {
+			$('#tr'+id).html(data);
+			$('.close').click();
+		})
+	}
+	//批量删除
+	 $('.checkd').click(function () {
+		 $('.checks').click();
+	 })
+	function delAll() {
+		datas =$('.checks:checked');
+		arr = new  Array();
+		for (i=0;i<datas.length;i++){
+			arr[i] = datas.eq(i).val();
+		}
+		str = arr.join(',',arr);
+
+		$.post("{:url('ajax_delAll')}",{str:str},function (data) {
+                       // alert(data);
+			if(data==arr.length){
+				for(i=0;i<arr.length;i++){
+					$("#tr"+arr[i]).remove();
+				}
+			}else{
+				alert("删除失败");
+			}
+		})
+	}
+	//状态的改变
+function status(obj,id,val) {
+		if (val){
+		   $.post("{:url('ajax_status')}",{id:id,status:0},function (data) {
+			  $(obj).html("不显示");
+			   $(obj).attr('class','btn btn-danger');
+			   $(obj).attr("onclick","status(this,"+id+",0)");
+		   })
+		} else {
+			$.post("{:url('ajax_status')}",{id:id,status:1},function (data) {
+				  $(obj).html("显示");
+				  $(obj).attr('class','btn btn-info');
+				  $(obj).attr("onclick","status(this,"+id+",1)");
+			})
+		}
+	}
+</script>

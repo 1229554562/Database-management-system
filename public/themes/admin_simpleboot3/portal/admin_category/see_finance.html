@@ -1,0 +1,387 @@
+<include file="public@header" />
+<style>
+
+</style>
+<script type="text/javascript">
+	//全局变量
+	var GV = {
+		ROOT: "__ROOT__/",
+		WEB_ROOT: "__WEB_ROOT__/",
+		JS_ROOT: "static/js/",
+		APP: '{$Request.module}'/*当前应用名*/
+	};
+</script>
+<script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
+<script src="__STATIC__/js/wind.js"></script>
+<script src="__TMPL__/public/assets/js/bootstrap.min.js"></script>
+<script src="__TMPL__/public/assets/simpleboot3/js/jquery.basictable.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	Wind.css('artDialog');
+	Wind.css('layer');
+	$(function () {
+		$("[data-toggle='tooltip']").tooltip();
+		$("li.dropdown").hover(function () {
+			$(this).addClass("open");
+		}, function () {
+			$(this).removeClass("open");
+		});
+		$('.table').basictable();
+	});
+</script>
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="js-ajax-form" method="POST" action="{:url('AdminCategory/editprofit')}">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-calendar"></span>
+				<h1 class="panel-title">查看企业负债</h1>
+			</div>
+			<div class="panel-body" style="margin-top: 35px;">
+				<div class="left">
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">货币资金：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['monetary_fund']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">短期投资：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['short_Investment']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应收票据：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['rv_bill']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应收账款：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['rv_paragraph']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">预付账款：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['pia_paragraph']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应收股利：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['rv_thigh']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应收利息：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['rv_Interest']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">其他应收款：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['ord_receivables']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">存货：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['stock']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">原材料：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['raw_material']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">在产品：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['products_in']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">库存商品：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sk_commodity']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">周转材料：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['turn_material']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">其它流动资产：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['ord_flow_asets']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">流动资产合计：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sum_flow_asets']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">长期债券投资：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['long_bond']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">长期股权投资：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['long_thigh']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">固定资产原价：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['fixed_money_primary']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">累积折旧：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['cum_depreciation']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">固定资产账面价值：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['fixed_primary_value']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">在建工程：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['being_engineering']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">工程物资：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['engineering_material']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">固定资产清理：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['fixed_money_clear']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">生产性生物资产：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['biology_money']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">无形资产：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['hide_assets']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">开发支出：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['development_out']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">长期待摊费用：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['long_pending']}元"  disabled>
+						</div>
+					</div>
+				</div>
+				<div class="right">
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">其他非流动资产：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['ord_fixed_assets']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">非流动资产合计：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sum_ord_fixed']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">资产总计：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sum_assets']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">短期借款：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['short_loan']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应付票据：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sd_payable']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应付账款：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sd_paragraph']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">预收账款：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['ca_paragraph']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应付职工薪酬：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sd_workers_pay']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应付利息：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sd_interest']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应付税费：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sd_taxation']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">应付利润：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sd_profit']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">其他应付款：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['ord_sd_payment']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">其他流动负债：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['ord_flow_payment']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">流动负债合计：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sum_flow_payment']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">长期借款：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['long_loan']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">长期应付款：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['long_payment']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">递延收益：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['deferred_profit']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">其他非流动负债：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['ord_fixed_liabilities']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">其他非流动负债合计：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sum_fixed_liabilities']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">负债合计：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sum_liabilities']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">实收资本（或股本）：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['paid_capital']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">资本公积：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['capital_surplus']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">盈余公积：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['surplus_reserves']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">未分配利润：</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['unallocated_profit']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">所有者权益（或股东权益）合计</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sum_rights_interests']}元"  disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label text-right">负债和所有者权益（或股东权益）总计</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" value="{$finance['sum_liabilities_equity']}元"  disabled>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="__STATIC__/js/admin.js"></script>
+		<script language="JavaScript" type="text/JavaScript">
+
+	function check(form){
+	//检查姓名是否填写
+		var username = form.name.value;
+			if(username.length==0){
+			alert("请填写用户名！");
+			form.username.focus();
+			return false;
+		}
+		var password = form.password.value;
+		if(password.length==0){
+			alert("请填写密码！");
+			form.password.focus();
+			return false;
+		}
+	}
+
+</script>
+</body>
+
+</html>

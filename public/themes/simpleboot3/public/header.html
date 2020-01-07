@@ -1,0 +1,44 @@
+<div id="header">
+    <div id="top">
+        <div id="innertop" class="innerwidth flex">
+            <div id="logo" class="flex">
+                <img src="__STATIC__/DLH/img/logo.png" alt="">
+                <div id="innername">科技企业加速器瞪羚汇会员企业管理系统</div>
+            </div>
+            <div id="innerlist" class="flex">
+                <form action="{:url('portal/Search/search')}">
+                <div id="search" class="flex">
+                    <input id="inputbox" type="text" placeholder="请输入企业/老板/分类/活动" name="name">
+                    <a href="">
+                        <div id="check"><img src="__STATIC__/DLH/img/search.png" alt=""></div>
+                        <button>11</button>
+                    </a>
+                </div>
+            </form>
+            <if condition="$user eq ''">
+                <a id="registbtn" class="show" href="/user/login/index?data=1"><i id="registlogo"></i>
+                    注册</a>
+                <a id="loginbtn" class="show" href="/user/login/index?data=0"><i id="loginlogo"></i>
+                    登录</a>
+                    <else />
+               
+                <div id="telbox">
+                    <span id="tel">{$user}</span>
+                    <div id="littletri"></div>
+                </div>
+                <div id="logoutbox" class="hidd">
+                    <div class="flex">
+                        <div id="changebtn">
+                            <div id="changeicon"></div>
+                            <p>修改密码</p>
+                        </div>
+                        <div id="logoutbtn">
+                            <div id="logouticon"></div>
+                            <a href="{:url('user/Login/loginout')}">退出</a>
+                        </div>
+                    </div>
+                </div></if>
+                <a href="{:cmf_url('admin/Index/index')}"><p><i id="backlogo"></i>后台入口</p></a>
+            </div>
+        </div>
+</div>

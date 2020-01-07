@@ -1,0 +1,109 @@
+<include file="public@header"/>
+<style>
+
+</style>
+<body>
+<div class="wrap">
+    <div class="nav-top">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('AdminTag/finance')}">企业经营管理</a></li>
+        </ul>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('Admin_category/people_profit')}">企业利润</a></li>
+        </ul>
+    </div>
+
+    <!-- <form class="well form-inline margin-top-20" method="POST" action="{:url('AdminCategory/report')}">
+        <label>员工姓名：</label>
+        <input type="text" class="form-control" name="keyword" style="width: 200px;"
+               value="{:input('request.keyword')}" placeholder="请输入员工姓名">       
+        <button class="btn btn-primary" id="search">搜索</button>
+        <a class="btn btn-primary" id="search" style="background: none;color:#999;" href="#"">清除</a>
+    </form> -->
+
+
+    <form class="js-ajax-form well" method="post" action="{:url('AdminNewup/people_profit')}">
+       
+        <div class="table-top-left">
+            <div class="col-md-6 col-sm-10">
+                <input id="excel-1" type="hidden" name="excel_url" >
+                <input  id="excel-1-name" type="text" name="excel_name" title="Excel名称">
+                <a href="javascript:uploadOne('Excel上传','#excel-1','file');" class="btn btn-sm btn-default">利润文件上传</a>
+            </div>
+              
+            <div class="form-group" >
+                <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-danger btn-sm js-ajax-submit" >Excel导入</button>
+                </div>
+            </div>
+        </div> 
+     
+        <div class="table-actions">
+            <a class="btn btn-danger btn-sm js-ajax-submit"   href="{:url('AdminNewup/profit_upload')}"
+            >下载excel模板
+            </a>
+        </div>
+        
+        
+        <table class="table table-hover">
+            <thead>
+            <tr>
+ 
+                <th>时间</th>
+                <th> 营业收入(元)</th>
+                <th> 营业成本(元)</th>
+                <th> 营业税金及附加(元)</th>
+                <th> 销售费用(元)</th>
+                <th> 管理费用(元)</th>
+                <th> 投资收益(元)</th>
+                <th> 营业利润(元)</th>
+                <th> 营业外收入(元)</th>
+                <th> 营业外支出(元)</th>
+                <th> 利润总额(元)</th>
+                <th> 所得税费用(元)</th>
+                <th> 净利润(元)</th>
+                <th class="caozuo"> 操作</th>
+            </tr>
+            </thead>
+            <foreach name="lrres" item="fo" key="k">
+                <tr>
+
+                    <td>{:date('Y/m',$fo['time'])}</td>
+                    <td>{$fo.business_income|default='0.00'}</td>
+                    <td>{$fo.operating_cost|default='0.00'}</td>
+                    <td>{$fo.sales_tax_additional|default='0.00'}</td>
+                    <td>{$fo.selling_expenses|default='0.00'}</td>
+                    <td>{$fo.management_cost|default='0.00'}</td>
+                    <td>{$fo.income_investment|default='0.00'}</td>
+                    <td>{$fo.operating_profit|default='0.00'}</td>
+                    <td>{$fo.non_operating_income|default='0.00'}</td>
+                    <td>{$fo.non_operating_expenses|default='0.00'}</td>
+                    <td>{$fo.total_profit|default='0.00'}</td>
+                    <td>{$fo.income_tax|default='0.00'}</td>
+                    <td>{$fo.net_profit|default='0.00'}</td>
+                    <td>
+                        <a class="btn btn-danger btn-sm shiny" style="margin-right:3px;background:green;border:none;" href="javascript:parent.openIframeLayer('{:url('AdminCategory/see_profit',array('id'=>$fo['id']))}','查看利润',{area: ['980px', '601px']});"                            
+                            class="btn btn-primary btn-sm shiny" style="width:60px;">
+                            <i class="fa fa-edit"></i> 查看详情
+                        </a>
+                       
+                        <!-- <a href="javascript:parent.openIframeLayer('{:url('AdminCategory/editprofit',array('id'=>$fo['id']))}','编辑利润',{area: ['860px', '601px']});"                            
+                            class="btn btn-primary btn-sm shiny" style="width:60px;">
+                            <i class="fa fa-edit"></i> 编辑
+                        </a> -->
+                    </td>
+                </tr>
+            </foreach>
+
+        </table>
+        <div class="text-center">
+                <ul class="pagination">
+
+                </ul>
+        </div>     
+   
+    
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

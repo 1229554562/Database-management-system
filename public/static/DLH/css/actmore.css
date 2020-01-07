@@ -1,0 +1,49 @@
+#actbox{
+    width: 100%;
+    background-color: #fff;
+    border-radius: 4px;
+}
+#acttop{
+    height: 50px;
+    line-height: 50px;
+    letter-spacing: 1px;
+    font-size: 14px;
+    color: #999999;
+    border-bottom: 1px solid #e6e6e6;
+}
+#acttop>p{
+    margin-left: 30px;
+}
+.actnumber{
+    color: #1f75f7;
+}
+#actlist{
+    padding: 40px 24px 1px 30px;
+}
+#actlist img{
+    width: 260px;
+    height: 160px;
+    border-radius: 4px;
+    margin-right: 19px;
+}
+.actives{
+    margin-bottom: 30px;
+}
+.activeinfo{
+    margin-top: 10px;
+}
+.activetitle{
+    color: #333333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.activetime{
+    color: #999999;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+.activeintro{
+    color: #666666;
+    font-size: 14px;
+    line-height: 22px;
+}

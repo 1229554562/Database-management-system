@@ -1,0 +1,263 @@
+<include file="public@header"/>
+<style>
+
+</style>
+<script type="text/javascript">
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: '{$Request.module}'/*当前应用名*/
+    };
+</script>
+<script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
+<script src="__STATIC__/js/wind.js"></script>
+<script src="__TMPL__/public/assets/js/bootstrap.min.js"></script>
+<script src="__TMPL__/public/assets/simpleboot3/js/jquery.basictable.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    Wind.css('artDialog');
+    Wind.css('layer');
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+        $("li.dropdown").hover(function () {
+            $(this).addClass("open");
+        }, function () {
+            $(this).removeClass("open");
+        });
+        $('.table').basictable();
+    });
+</script>
+</head>
+<body>
+<div class="wrap">
+	<div class="js-ajax-form" method="POST" action="{:url('AdminCategory/editprofit')}" >
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-calendar"></span>
+			<h1 class="panel-title">查看企业利润</h1>
+		</div>
+		<div class="panel-body" style="margin-top: 35px;">
+			<div class="left">
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">营业收入：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['business_income']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">营业成本：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['operating_cost']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">营业税金及附加：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['sales_tax_additional']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">消费税：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['excise_tax']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">营业税：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['sales_tax']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">城市维护建设税：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['construction_tax']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">资源税：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['resource_tax']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">土地增值税：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['land_tax']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">城镇土地使用税、房产税、车船税、印花税</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['order_tax']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">教育费附加、矿产资源补偿费、排污费</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['order_cost']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">销售费用：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['selling_expenses']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">商品维修费：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['maintenance_cost']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">广告费和业务宣传费：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['publicity_expenses']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">管理费用：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['management_cost']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">开办费：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['startup_cost']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">业务招待费：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['business_entertainment']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">研究费用：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['research_cost']}元" disabled>
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">财务费用：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['financial_cost']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">利息费用：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['interest_expenses']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">投资收益：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['income_investment']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">营业利润：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['operating_profit']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">营业外收入：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['non_operating_income']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">政府补助：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['government_grants']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">营业外支出：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['non_operating_expenses']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">坏账损失：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['bad_debt_loss']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">无法收回的长期<br>债券投资损失</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['bond_losses']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">无法收回的长期<br>股权投资损失</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['share_loss']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">
+						自然灾害等不可<br>抗力因素造成的损失
+					</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['other_losses']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">税收滞纳金：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['tax_overdue_fine']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">利润总额：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['total_profit']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">所得税费用：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['income_tax']}元" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">净利润：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$profit['net_profit']}元" disabled>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+
+	function check(form){
+	//检查姓名是否填写
+		var username = form.name.value;
+			if(username.length==0){
+			alert("请填写用户名！");
+			form.username.focus();
+			return false;
+		}
+		var password = form.password.value;
+		if(password.length==0){
+			alert("请填写密码！");
+			form.password.focus();
+			return false;
+		}
+	}
+
+</script>
+</body>
+
+</html>

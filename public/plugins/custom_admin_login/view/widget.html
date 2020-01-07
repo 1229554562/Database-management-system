@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>监管企业数据库系统</title>
+    <link rel="stylesheet" href="__ADMIN_TMPL__/public/assets/new/index.css">
+
+    <link href="__ADMIN_TMPL__/public/assets/new/themes/flatadmin/bootstrap.min.css" rel="stylesheet">
+    <link href="__STATIC__/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN_TMPL__/public/assets/new/themes/flatadmin/login.css" rel="stylesheet">
+
+    <script>
+        if (window.parent !== window.self) {
+            document.write              = '';
+            window.parent.location.href = window.self.location.href;
+            setTimeout(function () {
+                document.body.innerHTML = '';
+            }, 0);
+        }
+    </script>
+    <script type="text/javascript">
+        //全局变量
+        var GV = {
+            ROOT: "__ROOT__/",
+            WEB_ROOT: "__WEB_ROOT__/",
+            JS_ROOT: "static/js/",
+            APP: ''/*当前应用名*/
+        };
+    </script>
+    <style>
+
+
+     .a{
+            -webkit-user-select:text !important;
+        }
+    </style>
+</head>
+<body>   
+        <form class="js-ajax-form"  id="bg" action="{:url('public/doLogin')}" method="post">
+    <div id="bg">
+        <div id="img"></div>
+        <div id="box" >            
+            <div id="logo">
+                <img src="__ADMIN_TMPL__/public/assets/new/img/logo.png"  alt="" style="margin-left:-20px;">
+                <div style="text-align: center;margin-top:-10px;height:60px;">
+                    <span style="font-size: 24px;font-weight: bold;color: #333;">监管企业数据库系统</span>
+                </div>
+            </div>
+            
+
+            <div class="input" style="-webkit-user-select:text !important"><div class="icon"></div><input type="text" name="username" class="a" placeholder="请输入用户名" ></div>
+            <div class="input" style="-webkit-user-select:text !important"><div class="icon"></div><input type="password" name="password" class="a" placeholder="请输入密码" ></div>
+            <div class="input" style="-webkit-user-select:text !important"><div class="icon"></div><input type="text" name="captcha" class="a" placeholder="请输入验证码" > 
+                <captcha height="32" width="150" font-size="18" style="cursor: pointer;position:absolute;right:1px;top:1px;"/></div>
+            <div id="check">
+                <label class="checked"><input name="r1" type="radio" checked value="0"></label>
+                <label class="none"><input name="r1" type="radio" value="1"></label>
+                <p>记住我</p>
+            </div>
+            <button id="btn" type="submit" style="cursor: pointer">登录</button>
+           
+        </div>
+       
+    </div>
+</form>  
+    <script>
+        var ls = document.getElementsByTagName("label");
+        var isTrue = true;
+
+        var check = document.getElementById('check');
+        check.onclick = function(){
+            isTrue = !isTrue;
+            if(isTrue){
+                ls[0].className = "none";
+                ls[1].className = " ";
+            }else{
+                ls[0].className = "checked";
+                ls[1].className = "none";
+            }
+        }
+    </script>
+
+<script src="__ADMIN_TMPL__/public/assets/new/js/jquery-1.10.2.min.js"></script>
+<script src="__ADMIN_TMPL__/public/assets/new/js/wind.js"></script>
+<script src="__ADMIN_TMPL__/public/assets/new/js/admin.js"></script>
+</body>
+</html>

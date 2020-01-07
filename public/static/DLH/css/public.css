@@ -1,0 +1,208 @@
+#shadowbox{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(123, 123, 123, .3);
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#changebox{
+    width: 524px;
+    margin: 472px auto;
+    margin-bottom: 0;
+    padding: 25px 36px 48px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #0084FF;
+    box-shadow: 0 0 20px 0 rgba(170, 170, 170, 1);
+    color: rgb(16, 16, 16);
+}
+#changeboxtitle{
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+.changeboxlist{
+    margin-bottom: 12px;
+    line-height: 42px;
+}
+.changeboxlist>p{
+    width: 120px;
+    font-size: 18px;
+    margin-right: 20px;
+}
+.changeboxlist>input{
+    width: 100%;
+    height: 42px;
+    border: 1px solid #0084FF;
+}
+#confchange{
+    height: 50px;
+    width: 200px;
+    line-height: 50px;
+    background-color: #3084E6;
+    border-radius: 4px;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+
+#header{
+    width: 100%;
+}
+
+#top{
+    height: 90px;
+    width: 100%;
+    line-height: 90px;
+    background-color: #fff;
+}
+#innertop{
+    justify-content: space-between;
+}
+#logo>img{
+    width: 28px;
+    height: 29px;
+    margin-top: 30px;
+    margin-right: 4px;
+}
+#innername{
+    font-size: 20px;
+    color: #1f75f7;
+}
+#innerlist{
+    position: relative;
+}
+#innerlist>*{
+    margin-left: 22px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #333;
+}
+#innerlist i{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    position: relative;
+    top: 2px;
+    left: -2px;
+}
+#registlogo{
+    background-image: url(../img/registlogo.png);
+}
+#loginlogo{
+    background-image: url(../img/loginlogo.png);
+}
+#backlogo{
+    background-image: url(../img/backlogo.png);
+}
+#search{
+    width: 260px;
+	height: 40px;
+	background-color: #f2f2f2;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+#inputbox{
+    border: none;
+    outline: none;
+    width: 230px;
+    font-size: 12px;
+    background-color: inherit;
+    color: #b3b3b3;
+    margin-left: 4px;
+}
+#search>a{
+    line-height: 40px;
+}
+#check{
+    width: 12px;
+	height: 12px;
+    cursor: pointer;
+}
+#telbox{
+    position: relative;
+    margin-right: 40px;
+}
+#tel{
+    display: block;
+    color: #1f75f7;
+}
+#littletri{
+    width:0px;
+    height:0px;
+    border-left: 8px transparent solid;
+    border-top: 10px #1f75f7 solid;
+    border-right: 8px transparent solid;
+    border-bottom: 10px transparent solid;
+    position: absolute;
+    top: 40px;
+    left: 82px; 
+}
+#logoutbox{
+    width: 141px;
+    height: 61px;
+    background-color: #fff;
+    color: #888;
+    box-shadow: 0px 0px 6px 0px 
+		rgba(176, 177, 178, 0.19);
+    position: absolute;
+    top: 58px;
+    left: 240px;
+    padding: 10px 20px;
+}
+#logoutbox>div{
+    justify-content: space-between;
+}
+#changeicon{
+    width: 26px;
+	height: 26px;
+    background-image: url(../img/pwicon.png);
+    margin-left: 11px;
+    margin-bottom: -6.5px;
+}
+#logouticon{
+    width: 20px;
+	height: 19px;
+    background-image: url(../img/logouticon.png);
+    margin: 4px 0 -3.5px 4px;
+}
+#logoutbox p{
+    font-size: 12px;
+    text-align: center;
+    line-height: 30px;
+}
+@keyframes action_scale{
+	0%{ opacity: 0;}
+	100%{ opacity: 1;}
+}
+
+#main{
+    background-color: #edf1f7;
+    padding: 35px 0 30px 0;
+}
+#menu{
+    color: #999999;
+    margin-bottom: 20px;
+}
+#menu>a{
+    display: inline;
+    color: #999999;
+}
+
+
+
+
+#footer{
+    background-color: #cbced1;
+    color: #666;
+    height: 100px;
+    line-height: 100px;
+    font-size: 14px;
+    text-align: center;
+}
+
+

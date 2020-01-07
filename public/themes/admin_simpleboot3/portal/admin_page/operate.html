@@ -1,0 +1,107 @@
+<include file="public@header"/>
+<style>
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="nav-top">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('AdminPage/enteroperate')}">企业经营管理</a></li>
+        </ul>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="{:url('AdminPage/operate',array('enter_id'=>$enter_id))}">{$name}</a></li>
+        </ul>
+
+    </div>
+
+    <div class="center">
+        <form class="js-ajax-form well" method="post" action="{:url('AdminPage/operate_excel')}">
+
+            <div class="table-top-left">
+                <div class="col-md-6 col-sm-10">
+                    <input id="enter_id" type="hidden" name="enter_id" value="{$enter_id}" >
+                    <input id="excel-1" type="hidden" name="excel_url" >
+                    <input  id="excel-1-name" type="text" name="excel_name" title="Excel名称">
+                    <a href="javascript:uploadOne('Excel上传','#excel-1','file');" class="btn btn-sm btn-default">经营报备</a>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-danger btn-sm js-ajax-submit" >Excel导入</button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-actions">
+                <a class="btn btn-danger btn-sm js-ajax-submit"  href="{:url('AdminPage/operate_down_excel')}"
+                >下载excel模板
+                </a>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>  时间             </th>
+                    <th> 资产总额（万元） </th>
+                    <th>  利润总额（万元） </th>
+                    <th>营业总收入（万元）</th>
+                    <th>   净利润（万元） </th>
+                    <th>营业总收入中主营业务收入（万元）</th>
+                    <th> 负债总额（万元） </th>
+                    <th> 纳税总额（万元）  </th>
+                    <th>所有者权益合计（万元）</th>
+                    <th >  操作            </th>
+                </tr>
+                </thead>
+                <foreach name="list" id="vo">
+                    <if condition="$vo.is_report eq 0">
+                        <tr class="no_report">
+                            <td>{$vo.enter_time}</td>
+                            <td>未报备</td>
+                            <td>未报备</td>
+                            <td>未报备</td>
+                            <td>未报备</td>
+                            <td>未报备</td>
+                            <td>未报备</td>
+                            <td>未报备 </td>
+                            <td>未报备</td>
+                            <td >
+                                <a href="javascript:;" class="btn btn-primary btn-sm shiny" style="margin-right:3px; background-color: #d4d4d4; border-color: #d4d4d4;">
+                                    <i class="fa fa-edit"></i> 编辑
+                                </a>
+                            </td>
+                        </tr>
+
+                        <else/>
+                        <tr class="report">
+                            <td>{$vo.enter_time}</td>
+                            <td>{$vo.assets}</td>
+                            <td>{$vo.profit}</td>
+                            <td>{$vo.sales}</td>
+                            <td>{$vo.net_profit}</td>
+                            <td>{$vo.main_business}</td>
+                            <td>{$vo.debt}</td>
+                            <td>{$vo.tax} </td>
+                            <td>{$vo.equity}</td>
+                            <td >
+                                <a href="javascript:parent.openIframeLayer('{:url('AdminPage/editoperate',array('id'=>$vo["id"]))}','编辑企业',{area: ['980px', '601px']});"
+                                class="btn btn-primary btn-sm shiny" style="margin-right:3px">
+                                <i class="fa fa-edit"></i> 编辑
+                                </a>
+                            </td>
+                        </tr>
+                    </if>
+                </foreach>
+            </table>
+        </div>
+
+
+
+
+        <div class="text-center">
+            <ul class="pagination">{$page}</ul>
+        </div>
+
+
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

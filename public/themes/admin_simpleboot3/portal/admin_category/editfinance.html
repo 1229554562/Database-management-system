@@ -1,0 +1,126 @@
+<include file="public@header"/>
+<style>
+
+</style>
+<script type="text/javascript">
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: '{$Request.module}'/*当前应用名*/
+    };
+</script>
+<script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
+<script src="__STATIC__/js/wind.js"></script>
+<script src="__TMPL__/public/assets/js/bootstrap.min.js"></script>
+<script src="__TMPL__/public/assets/simpleboot3/js/jquery.basictable.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    Wind.css('artDialog');
+    Wind.css('layer');
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+        $("li.dropdown").hover(function () {
+            $(this).addClass("open");
+        }, function () {
+            $(this).removeClass("open");
+        });
+        $('.table').basictable();
+    });
+</script>
+</head>
+<body>
+<div class="wrap">
+	<form class="js-ajax-form" method="POST" action="{:url('AdminCategory/editfinance')}" enctype="multipart/form-data">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-calendar"></span>
+			<h1 class="panel-title">编辑企业负债</h1>
+		</div>
+		<div class="panel-center" style="margin-top: 35px;display: flex">
+			<input type="hidden" name="id" value="{$fres['id']}" readonly>
+			<div class="row left">
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px;">流动资产合计(元)：</label>
+					<div class="col-md-8" >
+						<input type="number" class="form-control" name="sum_flow_asets" id="sex" required="required" value="{$fres['sum_flow_asets']}" placeholder="请输入流动资产合计">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px;">非流动资产(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="sum_ord_fixed" id="sex" required="required" value="{$fres['sum_ord_fixed']}" placeholder="请输入非流动资产合计">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px;">资产总计(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="sum_assets" id="sex" required="required" value="{$fres['sum_assets']}" placeholder="请输入资产总计">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px;">流动负债合计(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="sum_flow_payment" id="sex" required="required" value="{$fres['sum_flow_payment']}" placeholder="请输入流动负债合计">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px;">非流动负债(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="sum_fixed_liabilities" id="sex" required="required" value="{$fres['sum_fixed_liabilities']}" placeholder="请输入非流动负债合计">
+					</div>
+				</div>
+			
+			</div>
+
+			<div class="row right">
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px;">负债合计(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="sum_liabilities" id="sex" required="required" value="{$fres['sum_liabilities']}" placeholder="请输入负债合计">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px;">所有者权益(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="sum_rights_interests" id="sex" required="required" value="{$fres['sum_rights_interests']}" placeholder="请输入所有者权益合计">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px;width:180px;margin-left:-20px;">负债和所有者权益总计(元):</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" style="margin-top:-33px" name="sum_liabilities_equity" id="sex" required="required" value="{$fres['sum_liabilities_equity']}" placeholder="请输入负载和所有者权益总计">
+					</div>
+				</div>
+		
+
+			</div>
+		</div>
+		<div id="btn">
+			<button class="btn btn-default js-ajax-submit" type="submit" >确认添加</button>
+		</div>
+
+	</form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+
+	function check(form){
+	//检查姓名是否填写
+		var username = form.name.value;
+			if(username.length==0){
+			alert("请填写用户名！");
+			form.username.focus();
+			return false;
+		}
+		var password = form.password.value;
+		if(password.length==0){
+			alert("请填写密码！");
+			form.password.focus();
+			return false;
+		}
+	}
+
+</script>
+</body>
+
+</html>

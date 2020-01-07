@@ -1,0 +1,41 @@
+.login-wrap{background:#0d80c8;}
+.loginBg{ position:absolute; top:0; left:0; width:100%; height:100%;}
+.loginImg{ position:absolute; left:-20%; top:5%; z-index:998;}
+.login-head{ height:90px; background:#08193b; opacity:0.4; filter:alpha(opacity=40); width:100%; position:absolute; top:0; left:0;}
+.login-wrap .wrap{ position:relative;}
+.login-wrap .logo{ height:90px; line-height:90px;}
+.logoBox{ width:341px; height:455px;background:url(../../images/loginBox.png) no-repeat; padding:0 24px; position:absolute; right:0; top:50%; margin-top:-227px; z-index: 999;}
+.logoBox h1{ font-size:28px; color:#fff; padding:38px 0 32px;}
+#sky{ position:relative; transition:all 0.5s;}
+#sky .img{ position:absolute; left:60px; width:1162px; transition:all 0.5s; -webkit-transition:all 0.5s; -moz-transition:all 0.5s; -ms-transition:all 0.5s; -o-transition:all 0.5s; opacity:0; filter:alpha(opacity=0); }
+#sky .img1{ margin-top:10px; }
+#sky .img2{ margin-top:20px; }
+#sky .img3{ margin-top:30px; }
+#sky .img img { width:100%; transition:all 0.5s; }
+.lhg{ overflow:hidden;}
+
+.logoBox .form-group{ position:relative; margin-bottom:20px;}
+.logoBox .form-group i{ display:inline-block; position:absolute; top:12px; left:8px; width:20px; height:21px;background:url(../../images/login-ico.png) no-repeat;}
+.logoBox .form-group i.ico01{ background-position: 0 0;}
+.logoBox .form-group i.ico02{ background-position: 0 -21px;}
+.logoBox .form-group i.ico03{ background-position: 0 -42px;}
+.logoBox .form-control{ border-radius:5px; height:47px; line-height:47px; padding:0 0 0 37px; font-size:16px;}
+.logoBox .verify_img{ position:absolute;cursor:pointer;right:1px;top:1px; width:102px; border-radius:5px; height:45px;}
+.logoBox .btn-primary{ background:#148fd0; height:56px; line-height:56px; color:#fff; border:0; font-size:20px; padding:0; border-radius:28px;box-shadow: 0 8px 30px rgba(73, 121, 226, 0.7);}
+.logoBox .btn-primary.active,.logoBox .btn-primary:active{ background:#009bdf;}
+
+
+
+.container{ width:1200px;}
+@media (min-width:1439px){
+    .loginImg{ width:90%; top:10%;}
+}
+@media screen and (max-width:425px) {
+    .loginImg{display: none;}
+    .container{ width:100%;}
+    .login-head{height:4em;}
+    .login-wrap .logo{ text-align: center;height:4em; line-height: 4em;}
+    .logoBox{width:90%; height: 84%; background-size:100% 100%; width:80%; padding: 0 6%; margin-right: -40%; right: 50%; margin-top:0; top: 10%; }
+    .logoBox h1{ font-size: 1.5em; padding: 1.5rem 0;}
+    .logoBox .btn-primary{ height: 2.2em; line-height: 2.2em; font-size: 1.3em;}
+}

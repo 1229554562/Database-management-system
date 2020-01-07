@@ -1,0 +1,443 @@
+<include file="public@header" />
+<hook name="admin_before_head_end" />
+</head>
+<body>
+    <div class="wrap">
+        <div class="row">
+            <div class="col-lg-3 caption ie-1">
+                <div class="caption-top">
+                    <div class="caption-title">
+                        <img src="__TMPL__/public/assets/images/icon1.png" alt="" class="icon-top"/>
+                        <p class="caption-name">企业总数</p>
+                        <ul>
+                            <li>单位:家</li>
+                            <li class="index-top-title">{$enter_sum}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 caption ie-2">
+                <div class="caption-top">
+                    <div class="caption-title">
+                        <img src="__TMPL__/public/assets/images/icon2.png" alt="" class="icon-top"/>
+                        <p class="caption-name">总注册资金</p>
+                        <ul>
+                            <li>单位:万元</li>
+                            <li class="index-top-title">{$regmany}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 caption ie-3">
+                <div class="caption-top">
+                    <div class="caption-title">
+                        <img src="__TMPL__/public/assets/images/icon3.png" alt="" class="icon-top"/>
+                        <p class="caption-name">总利润</p>
+                        <ul>
+                            <li>单位:万元</li>
+                            <li class="index-top-title"><?php echo round($profit/10000,2); ?></li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 caption ie-4">
+                <div class="caption-top">
+                    <div class="caption-title">
+                        <img src="__TMPL__/public/assets/images/icon4.png" alt="" class="icon-top"/>
+                        <p class="caption-name">报备人数</p>
+                        <ul>
+                            <li>单位:人</li>
+                            <li class="index-top-title">{$enter_user}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="echarts">
+            <div id="echartl" class="echart echart-left width-100">
+                <p class="chart-title">利润（元）</p>
+                <div class="chart-body" id="case"></div>
+            </div>
+            
+            <div id="echart2" class="echart echart-left width-100">
+                <p class="chart-title">流量（元）</p>
+                <div class="chart-body" id="case2" style="width: 100%;height: 406px;"></div>
+            </div>
+            <br />
+            <div id="echart3" class="echart echart-left width-100">
+                <p class="chart-title">负债（元）</p>
+                <div class="chart-body" id="case3" style="width: 100%;height: 406px;"></div>
+            </div>
+            <br />
+            <div id="echartr" class="echart echart-right width-100">
+                <p class="chart-title">上月信息统计</p>
+                <div class="echartr-body">
+                    <ul>
+                        <li>
+                            <div>
+                                <p>{$pre_add}家</p>
+                                <span>上月新增企业</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <p>{$pre_sum_salse}万元</p>
+                                <span>上月营业总收入</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <p>{$pre_sum_profit}万元</p>
+                                <span>上月总利润</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <p>{$pre_report}家</p>
+                                <span>上月已报备企业</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <p>{$sales_rate}%</p>
+                                <span>营业总收入<br>较上月同比增长</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <p>{$profit_rate}%</p>
+                                <span>总利润<br>较上月同比增长</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+ 
+
+    </div>
+    <script src="__STATIC__/js/echarts/echarts.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="__STATIC__/js/admin.js"></script>
+    <script src="__STATIC__/DLH/js/jquery-3.4.1.min.js"></script>
+    <php>
+        $lang_set=defined('LANG_SET')?LANG_SET:'';
+        $thinkcmf_version=defined('THINKCMF_VERSION')?THINKCMF_VERSION:'';
+    </php>
+    <script lang="javascript">
+
+        var season = {$eight};
+        var money = {$money};
+        var Case = echarts.init(document.getElementById('case'));
+        // let business_income = []
+        //    for (let i = 0; i < 8; i++) {
+        //     //    business_income[i] =   money[i]['business_income'];
+        //         if(!money[i]){
+        //             money[i]['business_income'] = 0;
+        //             money[i]['operating_cost'] = 0; 
+        //             money[i]['total_profit'] = 0; 
+        //             money[i]['income_tax'] = 0;    
+        //         }
+               
+        //    }
+        var option1 = {
+            color: ['#eda406','#7460d0','#0076ff','#36bae6'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data:['营业收入','营业成本','利润总额','所得税费用']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    splitLine:{show: false},//去除网格线
+                    data:[season[7]+'月',season[6]+'月',season[5]+'月',season[4]+'月',season[3]+'月',season[2]+'月',season[1]+'月',season[0]+'月'],
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                }
+            ],
+           
+            series: [
+                {
+                    name:'营业收入',
+                    type:'bar',
+                    data:[
+                       money[7]?money[7]['business_income']:0,
+                        money[6]?money[6]['business_income']:0,
+                        money[5]?money[5]['business_income']:0,
+                        money[4]?money[4]['business_income']:0,
+                        money[3]?money[3]['business_income']:0,
+                        money[2]?money[2]['business_income']:0,
+                        money[1]?money[1]['business_income']:0,
+                        money[0]?money[0]['business_income']:0,     
+                    ],
+  
+                },
+                {
+                    name:'营业成本',
+                    type:'bar',
+                    barGap: 0,
+                    data:[
+                        money[7]?money[7]['operating_cost']:0,
+                        money[6]?money[6]['operating_cost']:0,
+                        money[5]?money[5]['operating_cost']:0,
+                        money[4]?money[4]['operating_cost']:0,
+                        money[3]?money[3]['operating_cost']:0,
+                        money[2]?money[2]['operating_cost']:0,
+                        money[1]?money[1]['operating_cost']:0,
+                        money[0]?money[0]['operating_cost']:0,
+                        ]
+                },
+                {
+                    name:'利润总额',
+                    type:'bar',
+                    data:[
+                        money[7]?money[7]['total_profit']:0,
+                        money[6]?money[6]['total_profit']:0,
+                        money[5]?money[5]['total_profit']:0,
+                        money[4]?money[4]['total_profit']:0,
+                        money[3]?money[3]['total_profit']:0,
+                        money[2]?money[2]['total_profit']:0,
+                        money[1]?money[1]['total_profit']:0,
+                        money[0]?money[0]['total_profit']:0,
+                        ]
+                },
+                {
+                    name:'所得税费用',
+                    type:'bar',
+                    data:[
+                        money[7]?money[7]['income_tax']:0,
+                        money[6]?money[6]['income_tax']:0,
+                        money[5]?money[5]['income_tax']:0,
+                        money[4]?money[4]['income_tax']:0,
+                        money[3]?money[3]['income_tax']:0,
+                        money[2]?money[2]['income_tax']:0,
+                        money[1]?money[1]['income_tax']:0,
+                        money[0]?money[0]['income_tax']:0,
+                        ]
+                }
+            ]
+        };
+       Case.setOption(option1);
+
+        
+        // var season = {$eight};
+        // var money = {$money};
+        var Case2 = echarts.init(document.getElementById('case2'));
+
+        var cashf  = {$cashf};
+
+        var option2 = {
+            color: ['#eda406','#7460d0','#0076ff','#36bae6'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data:['经营活动产生的现金流量净额','投资活动产生的现金流量净额','筹资活动产生的现金流量净额','汇率变动对现金及现金等价物的影响']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    splitLine:{show: false},//去除网格线
+                    data:[season[7]+'月',season[6]+'月',season[5]+'月',season[4]+'月',season[3]+'月',season[2]+'月',season[1]+'月',season[0]+'月'],
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                }
+            ],
+            series: [
+                {
+                    name:'经营活动产生的现金流量净额',
+                    type:'bar',
+                    data:[
+                        cashf[7]['net_cash_flow'],
+                        cashf[6]?cashf[6]['net_cash_flow']:0,
+                        cashf[5]?cashf[5]['net_cash_flow']:0,
+                        cashf[4]?cashf[4]['net_cash_flow']:0,
+                        cashf[3]?cashf[3]['net_cash_flow']:0,
+                        cashf[2]?cashf[2]['net_cash_flow']:0,
+                        cashf[1]?cashf[1]['net_cash_flow']:0,
+                        cashf[0]?cashf[0]['net_cash_flow']:0,
+                        ]
+                },
+                {
+                    name:'投资活动产生的现金流量净额',
+                    type:'bar',
+                    barGap: 0,
+                    data:[
+                        cashf[7]['investment_flow'],
+                        cashf[6]?cashf[6]['investment_flow']:0,
+                        cashf[5]?cashf[5]['investment_flow']:0,
+                        cashf[4]?cashf[4]['investment_flow']:0,
+                        cashf[3]?cashf[3]['investment_flow']:0,
+                        cashf[2]?cashf[2]['investment_flow']:0,
+                        cashf[1]?cashf[1]['investment_flow']:0,
+                        cashf[0]?cashf[0]['investment_flow']:0,
+                        ]
+                },
+                {
+                    name:'筹资活动产生的现金流量净额',
+                    type:'bar',
+                    data:[
+                        cashf[7]['net_cash_activities'],
+                        cashf[6]?cashf[6]['net_cash_activities']:0,
+                        cashf[5]?cashf[5]['net_cash_activities']:0,
+                        cashf[4]?cashf[4]['net_cash_activities']:0,
+                        cashf[3]?cashf[3]['net_cash_activities']:0,
+                        cashf[2]?cashf[2]['net_cash_activities']:0,
+                        cashf[1]?cashf[1]['net_cash_activities']:0,
+                        cashf[0]?cashf[0]['net_cash_activities']:0,
+                        ]
+                },
+                {
+                    name:'汇率变动对现金及现金等价物的影响',
+                    type:'bar',
+                    data:[
+                        cashf[7]['exchange_rate_effect'],
+                        cashf[6]?cashf[6]['exchange_rate_effect']:0,
+                        cashf[5]?cashf[5]['exchange_rate_effect']:0,
+                        cashf[4]?cashf[4]['exchange_rate_effect']:0,
+                        cashf[3]?cashf[3]['exchange_rate_effect']:0,
+                        cashf[2]?cashf[2]['exchange_rate_effect']:0,
+                        cashf[1]?cashf[1]['exchange_rate_effect']:0,
+                        cashf[0]?cashf[0]['exchange_rate_effect']:0,
+                        ]
+                }
+            ]
+        };
+        Case2.setOption(option2);
+      
+        var Case3 = echarts.init(document.getElementById('case3'));
+        // console.log(Case)
+        var assets  = {$asset};
+        // console.log(Case2)
+        var option3 = {
+            color: ['#eda406','#7460d0','#0076ff','#36bae6'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data:['资产总计','负债合计','所有者权益合计','负债和所有者权益总计']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    splitLine:{show: false},//去除网格线
+                    data:[season[7]+'月',season[6]+'月',season[5]+'月',season[4]+'月',season[3]+'月',season[2]+'月',season[1]+'月',season[0]+'月'],
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                }
+            ],
+            series: [
+                {
+                    name:'资产总计',
+                    type:'bar',
+                    data:[     
+                        assets[7]['sum_assets'],
+                        assets[6]?assets[6]['sum_assets']:0,
+                        assets[5]?assets[5]['sum_assets']:0,
+                        assets[4]?assets[4]['sum_assets']:0,
+                        assets[3]?assets[3]['sum_assets']:0,
+                        assets[2]?assets[2]['sum_assets']:0,
+                        assets[1]?assets[1]['sum_assets']:0,
+                        assets[0]?assets[0]['sum_assets']:0,
+                        ]
+                },
+                {
+                    name:'负债合计',
+                    type:'bar',
+                    barGap: 0,
+                    data:[     
+                        assets[7]['sum_liabilities'],
+                        assets[6]?assets[6]['sum_liabilities']:0,
+                        assets[5]?assets[5]['sum_liabilities']:0,
+                        assets[4]?assets[4]['sum_liabilities']:0,
+                        assets[3]?assets[3]['sum_liabilities']:0,
+                        assets[2]?assets[2]['sum_liabilities']:0,
+                        assets[1]?assets[1]['sum_liabilities']:0,
+                        assets[0]?assets[0]['sum_liabilities']:0,
+                        ]
+                },
+                {
+                    name:'所有者权益合计',
+                    type:'bar',
+                    data:[     
+                        assets[7]['sum_rights_interests'],
+                        assets[6]?assets[6]['sum_rights_interests']:0,
+                        assets[5]?assets[5]['sum_rights_interests']:0,
+                        assets[4]?assets[4]['sum_rights_interests']:0,
+                        assets[3]?assets[3]['sum_rights_interests']:0,
+                        assets[2]?assets[2]['sum_rights_interests']:0,
+                        assets[1]?assets[1]['sum_rights_interests']:0,
+                        assets[0]?assets[0]['sum_rights_interests']:0,
+                        ]
+                },
+                {
+                    name:'负债和所有者权益总计',
+                    type:'bar',
+                    data:[     
+                        assets[7]['sum_liabilities_equity'],
+                        assets[6]?assets[6]['sum_liabilities_equity']:0,
+                        assets[5]?assets[5]['sum_liabilities_equity']:0,
+                        assets[4]?assets[4]['sum_liabilities_equity']:0,
+                        assets[3]?assets[3]['sum_liabilities_equity']:0,
+                        assets[2]?assets[2]['sum_liabilities_equity']:0,
+                        assets[1]?assets[1]['sum_liabilities_equity']:0,
+                        assets[0]?assets[0]['sum_liabilities_equity']:0,
+                        ]
+                }
+            ]
+        };
+        Case3.setOption(option3);
+
+    </script>
+    <hook name="admin_before_body_end" />
+</body>
+
+</html>

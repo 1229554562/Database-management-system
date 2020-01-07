@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>jQuery TAB选项卡自动切换插件</title>
+
+<link type="text/css" href="__STATIC__/css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="mt-tabpage" js-tab="2">
+	<div class="mt-tabpage-title">
+		<a href="javascript:;" class="mt-tabpage-item mt-tabpage-item-cur">公告</a>
+		<a href="javascript:;" class="mt-tabpage-item">决定</a>
+		<a href="javascript:;" class="mt-tabpage-item">会议</a>
+	</div>
+	<div class="mt-tabpage-count">
+		<ul class="mt-tabpage-cont__wrap">
+			<li class="mt-tabpage-item">Cont1</li>
+			<li class="mt-tabpage-item">Cont2</li>
+			<li class="mt-tabpage-item">Cont3</li>
+		</ul>
+	</div>
+</div>
+
+<div class="mt-tabpage" js-tab="3">
+	<div class="mt-tabpage-title">
+		<a href="javascript:;" class="mt-tabpage-item mt-tabpage-item-cur">公告</a>
+		<a href="javascript:;" class="mt-tabpage-item">决定</a>
+		<a href="javascript:;" class="mt-tabpage-item">会议</a>
+	</div>
+	<div class="mt-tabpage-count">
+		<ul class="mt-tabpage-cont__wrap">
+			<li class="mt-tabpage-item">Cont1</li>
+			<li class="mt-tabpage-item">Cont2</li>
+			<li class="mt-tabpage-item">Cont3</li>
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript" src="__STATIC__/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="__STATIC__/js/mt-tabpage.js"></script>
+<script type="text/javascript">
+$(function () {
+
+	$('[js-tab=2]').tab({
+		mouse: 'over',   //切换方式：over，click
+		autoPlay: true,  //播放方式：false，true
+		curDisplay: 1,     //当前第一个打开
+		changeMethod: 'horizontal'  //切换选项：默认default，horizontal，vertical，opacity这4种方式
+	});
+
+	$('[js-tab=3]').tab({
+		curDisplay: 2,
+		changeMethod: 'horizontal'
+	});
+	
+});
+</script>
+</body>
+</html>

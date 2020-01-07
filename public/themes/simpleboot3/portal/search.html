@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>瞪羚汇会员企业管理系统</title>
+    <link rel="stylesheet" href="__STATIC__/DLH/css/common.css">
+    <link rel="stylesheet" href="__STATIC__/DLH/css/public.css">
+    <link rel="stylesheet" href="__STATIC__/DLH/css/search.css">
+    <script src="__STATIC__/DLH/js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div id="box">
+            <include file="public@header"/>
+        </div>
+        <div id="main">
+            <div class="innerwidth">
+                <p id="menu">
+                    <a href="">首页</a>&gt;
+                    <a href="javascript:void(0)">搜索列表页</a>
+                </p>
+                <div id="btnsbox">
+                    <div class="searchline">
+                        <span class="searchtag">行业分类</span>
+                        <a class="searchbtn" href="{:cmf_url('portal/Search/search1',['n'=>'1'])}">全部</a>
+                        <volist name="list" id="list">
+                        <a class="searchbtn" href="{:cmf_url('portal/Search/search1',['name'=>$list['industry']])}">{$list.industry}</a>
+                        </volist>
+                       
+                    </div>
+                    <div>
+                        <span class="searchtag">注册资本</span>
+                        <a class="searchbtn" href="">全部</a>
+                        <a class="searchbtn" href="{:cmf_url('portal/Search/search1',['min'=>'0.1','max'=>'50'])}">0~50万</a>
+                        <a class="searchbtn" href="{:cmf_url('portal/Search/search1',['min'=>'50','max'=>'100'])}">50~100万</a>
+                        <a class="searchbtn" href="{:cmf_url('portal/Search/search1',['min'=>'100','max'=>'500'])}">100~500万</a>
+                        <a class="searchbtn" href="{:cmf_url('portal/Search/search1',['min'=>'500','max'=>'1000'])}">500~1000万</a>
+                        <a class="searchbtn" href="{:cmf_url('portal/Search/search1',['max'=>'1000'])}">1000万+</a>
+                    </div>
+                </div>
+                <div id="actbox">
+                    <div id="acttop" class="flex">
+                        <p>为您找到<span class="actnumber">{$count|default='0'}</span>家公司</p>
+                        <form action="{:url('portal/Excel/out',['id'=>$data])}" mothed="post">
+                        <p id="outdata"><button id="outdata">数据导出</button></p></form>
+                    </div>
+                    <div id="actlist">
+                        <volist name='data' id='da'>
+                            <a class="actives flex" href="">
+                                <img src="__STATIC__/DLH/img/news.png" alt="">
+                                <div class="cominfo">
+                                    <p class="comname">{$da.unitname}</p>
+                                    <div class="infoline">
+                                        <p>法定代表人：<span>{$da.legalperson}</span></p>
+                                        <p>注册资本：<span>{$da.registermany}万元人民币</span></p>
+                                        <p>电话：<span>{$da.information}</span></p>
+                                    </div>
+                                    <div class="infoline">
+                                        <p>现注册地：<span>{$da.registeredplace}</span></p>
+                                    </div>
+                                    <div class="infoline">
+                                        <p>经营（业务）内容：<span>{$da.registeredplace}</span></p>
+                                    </div>
+                                    <div class="infoline">
+                                        <p>联系人：<span>{$da.contacts}</span></p>
+                                        <p>入园情况：<span>{$da.admission}</span></p>
+                                        <p>对接人：<span>{$da.pickpeople}</span></p>
+                                    </div>
+                                    <div class="infoline">
+                                        <p>获得园区支持情况：<span>1.创新创业大赛导师服务；2.获得入园评审会A评级;</span></p>
+                                    </div>
+                                </div>
+                                <div class="joinbox">
+                                    <p class="jointitle">参加园区活动情况：</p>
+                                    <p class="joininfo">参加园区瞪羚汇开放日活动<span>2</span>次</p>
+                                    <p class="joininfo">参加第1批入园评审会</p>
+                                </div>
+                            </a>
+                        </volist>
+                    </div>
+                </div>
+                <div id="pagelist"></div>
+            </div>
+            </div>
+        </div>
+        <div id="footer">
+            <p>Copyright © 2019 科技企业加速器瞪羚汇   版权所有</p>
+        </div>
+        <div id="shadowbox" class="hidd">
+            <div id="changebox" class="hidd">
+                <div id="changeboxtitle">
+                    <p>修改密码</p>
+                </div>
+                <div class="changeboxlist flex">
+                    <p>原密码</p>
+                    <input id="prepassword" type="password">
+                </div>
+                <div class="changeboxlist flex">
+                    <p>新密码</p>
+                    <input id="newpassword" type="password">
+                </div>
+                <div class="changeboxlist flex">
+                    <p>确认密码</p>
+                    <input id="confpassword" type="password">
+                </div>
+                <div id="confchange">确认修改</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="__STATIC__/DLH/js/index.js"></script>
+    <script src="__STATIC__/DLH/js/search.js"></script>
+</body>
+</html>

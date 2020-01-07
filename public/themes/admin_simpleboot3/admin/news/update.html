@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="__STATIC__/public/bs/css/bootstrap.min.css">
+<script src="__STATIC__/public/bs/js/jquery.min.js"></script>
+<script src="__STATIC__/public/bs/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="__STATIC__/admin/css/admin.css">
+<div class="col-md-13">
+	<ol class="breadcrumb">
+	  <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+	  <li><a href="#">作者管理</a></li>
+	  <li class="active">作者列表</li>
+	  <a href="" style="float:right;height:25px;" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a>
+	  <span style="clear:both"></span>
+	</ol>
+	<div class="panel panel-default">
+		<div class="panel-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div>
+                        <img src="__STATIC__/uploads/news/{$article.img}" alt="" height="100px" width="150px">
+                    </div>
+                    <label for="">文章图片</label>
+                      <input type="file" name="img" class="form-control" id="" value="">
+                    <input type="hidden" name="img" class="form-control" id="" value="{$article.img}">
+                </div>
+                <div class="form-group">
+                    <label for="">新闻标题</label>
+                    <input type="text" name="title" class="form-control"  value="{$article.title}">
+                </div>
+
+                <div class="form-group">
+                    <label for="">文章内容</label>
+                    <textarea class="form-control" rows="10" name="content">{$article.content}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="">作者</label>
+                    <input type="text" name="author" class="form-control"  value="{$article.author}">
+                </div>
+                <div class="form-group">
+                    <label for="">状态</label>
+                    <br>
+                    <input type="radio" name="status" value="1" {$article.status==1?'checked':''}>显示
+                    <input type="radio" name="status" value="0" {$article.status==0?'checked':''}>不显示
+                </div>
+                <div class="form-group">
+                    <input value="提交" class="btn btn-success" type="submit">
+                    <input type="reset" value="重置" class="btn btn-danger">
+                </div>
+            </form>
+        </div>
+		<div class="panel-footer">
+			
+		</div>
+	</div>
+</div>
+

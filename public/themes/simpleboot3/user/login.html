@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>会员登录</title>
+    <link rel="stylesheet" href="__STATIC__/DLH/css/login.css">
+    <script src="__STATIC__/DLH/js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div id="bg">
+        <div id="img"><div id="shadowbox"></div></div>
+        <div id="logo" class="flex">
+            <img src="__STATIC__/DLH/img/logo-white.png" alt="">
+            <div id="innername">科技企业加速器瞪羚汇会员企业管理系统</div>
+        </div>
+        <form class="js-ajax-form" action="{:url('user/login/doLogin')}" method="post">
+        <div id="loginbox" class="box">
+            <!--111-->
+
+            <div id="title">账号登录</div>
+                <div class="input"><div class="icon"></div><input type="text" placeholder="请输入账号" id="input_username" name="username" ></div>
+                <div class="input"><div class="icon"></div><input type="text" id="captcha" name="captcha" placeholder="验证码"><a href="">
+                    <div id="yzm"><captcha height="38" width="120" font-size="15"/></div></a></div>
+                <div class="input"><div class="icon"></div><input type="text" name="code" id="sms" placeholder="手机验证码" class="form-control sms">
+                    <input id="btnSendCode" class="btn btn-success js-get-mobile-code"
+                           style="width: 163px;position: absolute;top:0;right: 0;" type="button" value="获取验证码"
+                           class="button" onclick="sendMessage()" data="1" /></div>
+                <div class="btn" id="loginbtn">
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block js-ajax-submit" type="submit" data-wait="1500"
+                                style="margin-left: 0px;">确定登录
+                        </button>
+                    </div>
+                </div>
+
+            <!--  11-->
+        </div>
+        </form>
+        <div id="registbox" class="box hidd">
+            <div id="title">账号注册</div>
+            <form action="{:url('user/Register/doRegister')}" method="post">
+            <div class="input"><div class="icon"></div>
+                <input type="text" placeholder="请输入账号"  id="username" name="username" >
+            </div>
+                <div class="input"><div class="icon"></div><input type="text" id="input_captcha" name="captcha" placeholder="验证码"><a href="">
+                    <div id="yzm"><captcha height="38" width="120" font-size="15"/></div></a></div>
+                <div class="input"><div class="icon"></div><input type="text" name="code" id="sms" placeholder="手机验证码" class="form-control sms">
+                    <input id="btnSendCodes" class="btn btn-success js-get-mobile-code"
+                           style="width: 163px;position: absolute;top:0;right: 0;" type="button" value="获取验证码"
+                           class="button" onclick="send()" data="1" /></div>
+
+            <div class="btn" id="registbtn">
+                <!--注册-->
+<!--                <button type="submit"-->
+<!--                        >确定登录-->
+<!--                </button></div>-->
+                <div class="btn" id="registbtn">
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block js-ajax-submit" type="submit" data-wait="1500"
+                                style="margin-left: 0px;">确定注册
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+            <div id="botline" class="flex">
+                <div></div>
+                <div class="flex">
+                    <p>已有账号？</p>
+                    <div id="gotologin" class="blue">立即登录</div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">Copyright ? 2019科技企业加速器瞪羚汇版权所有</div>
+    </div>
+
+    <script src="__STATIC__/DLH/js/login.js"></script>
+</body>
+<!--登录开始-->
+<script type="text/javascript">
+    function sendMessage() {
+//向后台发送处理数据
+//         倒计时开始
+        var InterValObj; //timer变量，控制时间
+        var count = 60; //间隔函数，1秒执行
+        var curCount;//当前剩余秒数
+
+        var username = $('#input_username').val();
+        // alert(curCount);
+        var captcha = $('#captcha').val();
+        if($("#btnSendCode").attr("data")==0){
+            return;
+        }  
+        $.ajax({
+            url: "{:url('user/VerificationCode/sms_send')}",
+            type: 'post',
+            dataType: 'json',
+            data: {username:username, captcha:captcha,reg:1},
+          
+            success: function (d){
+                if (d.code == 1) {
+                    alert('已发送成功');
+                    curCount = count;
+                    //alert(curCount);
+                    $("#btnSendCode").attr("disabled", "true");
+                    $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+                    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                } else{
+                    alert(d.msg);
+                }
+            }
+        });
+    }
+
+
+
+
+    function send() {
+//向后台发送处理数据
+        var username = $('#username').val();
+        var captcha = $('#input_captcha').val();
+        if($("#btnSendCode").attr("data")==0){
+            return;
+        }
+        $.ajax({
+            url: "{:url('user/VerificationCode/sms')}",
+            type: 'post',
+            dataType: 'json',
+            data: {username:username, captcha:captcha,reg:1},
+            success: function (d){
+                if (d.code == 1) {
+                    alert('已发送成功');
+                    curCount = count;
+                    $("#btnSendCodes").attr("disabled", "true");
+                    $("#btnSendCodes").val("请在" + curCount + "秒内输入验证码");
+                    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                } else{
+                    alert(d.msg);
+                }
+            }
+        });
+    }
+
+
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#btnSendCode").removeAttr("disabled");//启用按钮
+            $("#btnSendCode").val("重新发送验证码");
+        }
+        else {
+            curCount--;
+            $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+        }
+    }
+
+</script>
+</html>

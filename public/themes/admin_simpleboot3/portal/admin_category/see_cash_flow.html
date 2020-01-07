@@ -1,0 +1,261 @@
+<include file="public@header"/>
+<style>
+
+</style>
+<script type="text/javascript">
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: '{$Request.module}'/*当前应用名*/
+    };
+</script>
+<script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
+<script src="__STATIC__/js/wind.js"></script>
+<script src="__TMPL__/public/assets/js/bootstrap.min.js"></script>
+<script src="__TMPL__/public/assets/simpleboot3/js/jquery.basictable.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    Wind.css('artDialog');
+    Wind.css('layer');
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+        $("li.dropdown").hover(function () {
+            $(this).addClass("open");
+        }, function () {
+            $(this).removeClass("open");
+        });
+        $('.table').basictable();
+    });
+</script>
+</head>
+<body>
+<div class="wrap">
+	<div class="js-ajax-form" method="POST" action="{:url('AdminCategory/editprofit')}" >
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-calendar"></span>
+			<h1 class="panel-title">查看企业现金流量</h1>
+		</div>
+		<div class="panel-body" style="margin-top: 35px;">
+			<div class="left">
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">销售商品、提供劳务收到的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['selling_cash']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">收到的税费返还</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['tax_refund']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">收到其他与经营活动有关的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['active_cash']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">经营活动现金流入小计</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['subtotal_active_cash']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">购买商品、接收劳务支付的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['cash_for_goods']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">支付给职工以及为职工支付的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['cash_to_employees']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">支付各项税费</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['payment_taxes']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">支付其他与经营活动有关的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['ord_active_cashs']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">经营活动现金流出小计</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['sub_active_cash']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">经营活动产生的现金流量净额</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['net_cash_flow']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">收回投资收到的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['recovery_investment']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">取得投资收益收到的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['Income_investment']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">处置固定资产、无形资产和其他长期资产收回的现金净额</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['net_cash']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">收到其他与投资活动有关的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['net_cash_subsidiaries']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">投资活动现金流入小计</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['sum_investment_activitie']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">购建固定资产、无形资产和其他长期资产支付的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['long_term_payment']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">投资支付的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['investing_cash']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">处置子公司及其他营业单位收到的现金净额</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['disposal_subsidiarie']}元"  disabled>
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">取得子公司及其他营业单位支付的现金净额</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['ord_payment_subsidiary']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">支付其他与投资活动有关的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['ord_investment_activities']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">投资活动现金流出小计</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['sum_investment_activities']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">投资活动产生的现金流量净额</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['investment_flow']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">吸收投资收到的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['absorb_investment']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">取得借款收到的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['obtain_loans']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">收到其他与筹资活动有关的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['ord_active_cash']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">筹资活动现金流入小计</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['inflow_subtotal']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">分配股利、利润或偿付利息支付的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['dividend_distribution']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">偿还债务支付的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['debt_repayment']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">支付其他与筹资活动有关的现金</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['ord_interest_cash']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">筹资活动产生的现金流量净额</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['net_cash_activities']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right" style="font-size: 13px;">筹资活动现金流出小计</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['sum_cash_outflow']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">汇率变动对现金及现金等价物的影响</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['exchange_rate_effect']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">现金及现金等价物净增加额</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['increment']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">期初现金及现金等价物余额</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['initial_balance']}元"  disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label text-right">期末现金及现金等价物余额</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" value="{$cash['ending_balance']}元"  disabled>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+
+</body>
+
+</html>

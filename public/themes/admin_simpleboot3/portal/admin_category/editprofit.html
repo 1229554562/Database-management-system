@@ -1,0 +1,142 @@
+<include file="public@header"/>
+<style>
+
+</style>
+<script type="text/javascript">
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: '{$Request.module}'/*当前应用名*/
+    };
+</script>
+<script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
+<script src="__STATIC__/js/wind.js"></script>
+<script src="__TMPL__/public/assets/js/bootstrap.min.js"></script>
+<script src="__TMPL__/public/assets/simpleboot3/js/jquery.basictable.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    Wind.css('artDialog');
+    Wind.css('layer');
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+        $("li.dropdown").hover(function () {
+            $(this).addClass("open");
+        }, function () {
+            $(this).removeClass("open");
+        });
+        $('.table').basictable();
+    });
+</script>
+</head>
+<body>
+<div class="wrap">
+	<form class="js-ajax-form" method="POST" action="{:url('AdminCategory/editprofit')}" >
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-calendar"></span>
+			<h1 class="panel-title">编辑企业利润</h1>
+		</div>
+		<div class="panel-center" style="margin-top: 35px;display: flex">
+			<input type="hidden" name="id" value="{$pf_res['id']}" readonly>
+			<div class="row left">
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px">营业收入(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="business_income" id="sex" required="required" value="{$pf_res['business_income']}" placeholder="请输入营业收入">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px">营业成本(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="operating_cost" id="sex" required="required" value="{$pf_res['operating_cost']}" placeholder="请输入营业成本">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 11px;width: 150px;">营业税金及附加(元)：</label>
+					<div class="col-md-8">
+						<input type="number"  class="form-control" name="sales_tax_additional" id="sex" required="required" style="margin-top:-32px" value="{$pf_res['sales_tax_additional']|default=''}" placeholder="请输入营业税金及附加">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px">销售费用(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="selling_expenses" id="sex" required="required" style="margin-top:-32px" value="{$pf_res['selling_expenses']}" placeholder="请输入销售费用">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px">投资收益(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="income_investment" id="sex" required="required" style="margin-top:-32px" value="{$pf_res['income_investment']}" placeholder="请输入投资收益">
+					</div>
+				</div>
+			
+			</div>
+
+			<div class="row right">
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px">营业利润(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="operating_profit" id="sex" required="required" value="{$pf_res['operating_profit']}" placeholder="请输入营业利润">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px">营业外收入(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="non_operating_income" id="sex" required="required" value="{$pf_res['non_operating_income']}" placeholder="请输入营业外收入">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px">营业外支出(元):</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="non_operating_expenses" id="sex" required="required" value="{$pf_res['non_operating_expenses']}" placeholder="请输入营业外支出">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px">利润总额(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="total_profit" id="sex" required="required" value="{$pf_res['total_profit']}" placeholder="请输入利润总额">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px" style="font-size: 12px">所得税费用(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="income_tax" id="sex" required="required" value="{$pf_res['income_tax']}" placeholder="请输入所得税费用">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sex" class="col-md-4 control-label text-right" style="font-size: 12px">净利润(元)：</label>
+					<div class="col-md-8">
+						<input type="number" class="form-control" name="net_profit" id="sex" required="required" value="{$pf_res['net_profit']}" placeholder="请输入净利润">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="btn">
+			<button class="btn btn-default js-ajax-submit" type="submit" >确认添加</button>
+		</div>
+
+	</form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+
+	function check(form){
+	//检查姓名是否填写
+		var username = form.name.value;
+			if(username.length==0){
+			alert("请填写用户名！");
+			form.username.focus();
+			return false;
+		}
+		var password = form.password.value;
+		if(password.length==0){
+			alert("请填写密码！");
+			form.password.focus();
+			return false;
+		}
+	}
+
+</script>
+</body>
+
+</html>

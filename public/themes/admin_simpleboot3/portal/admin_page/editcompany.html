@@ -1,0 +1,192 @@
+<include file="public@header"/>
+<style>
+
+
+</style>
+
+<script type="text/javascript">
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "static/js/",
+        APP: '{$Request.module}'/*当前应用名*/
+    };
+</script>
+<script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
+<script src="__STATIC__/js/wind.js"></script>
+<script src="__TMPL__/public/assets/js/bootstrap.min.js"></script>
+<script src="__TMPL__/public/assets/simpleboot3/js/jquery.basictable.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    Wind.css('artDialog');
+    Wind.css('layer');
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+        $("li.dropdown").hover(function () {
+            $(this).addClass("open");
+        }, function () {
+            $(this).removeClass("open");
+        });
+        $('.table').basictable();
+    });
+
+    function img(){
+        $("#text").html($("#fileinp").val());
+    }
+
+//    $("#fileinp").change(function () {
+//        alert($("#fileinp").val());
+//        $("#text").html($("#fileinp").val());
+//    })
+</script>
+</head>
+<body>
+	<div class="wrap">
+	<form class="js-ajax-form" method="POST" action="{:url('AdminPage/editPost')}" enctype="multipart/form-data">
+
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-calendar"></span>
+            <h1 class="panel-title">编辑企业</h1>
+        </div>
+        <div class="panel-body" style="margin-top: 35px;">
+            <div class="row left">
+                    <input type="hidden" value="{$edit['id']}" name="id" readonly="readonly">
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">企业名称：</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="unitname" id="sex" required="required" value="{$edit['unitname']}" placeholder="请输入企业名称">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">统一社会信用代码	：</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="credit_code" id="sex" required="required" value="{$edit['credit_code']}" placeholder="请输入信用代码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">法定代表人：</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="legalperson" id="sex" required="required" value="{$edit['legalperson']}" placeholder="请输入法定代表人">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">注册时间：</label>
+                        <div class="col-md-8">
+                            <input class="form-control js-bootstrap-date" name="regtime" value="{:date('Y-m-d',$edit['regtime'])}" size="20" autocomplete="off"  placeholder="请输入注册时间" required="required">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">注册资本：</label>
+                        <div class="col-md-8">
+                            <input type="number" class="form-control" name="regmany" id="sex" required="required" value="{$edit['regmany']}" placeholder="请输入注册资本">
+                            <span>万元</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">注册地：</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="regplace" id="sex" required="required" value="{$edit['regplace']}" placeholder="请输入注册地">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">登记机关：</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="regauthority" id="sex" required="required" value="{$edit['regauthority']}" placeholder="请输入登记机关">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right" style="float: left">营业执照：</label>
+                        <div class="col-md-8">
+
+                            <div style="width: 100%; height: 40px;">
+                                <label for="fileinp">
+                                    <input type="button" id="file_btn" value="点我上传" style="float: left;">
+                                    <if condition="$edit['license']!=''">
+                                        <span id="text" class="dis-none" style="float: left;margin-left:90px;margin-top: -45px;display:block;overflow:hidden;width: 130px;color: #000;">{$license_name}</span>
+                                        <else/>
+                                        <span id="text" style="float: left;margin-left:90px;margin-top: -45px;display:block;overflow:hidden;width: 130px;">请上传营业执照</span>
+                                    </if>
+                                    <input type="file" id="fileinp" name="license" onchange="img()">
+                                </label>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+
+            </div>
+            <div class="row right">
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">核准日期：</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control js-bootstrap-date" name="approval_date" id="sex" required="required" value="{$edit['approval_date']}" placeholder="请输入核准日期">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">营业期限自：</label>
+                        <div class="col-md-8">
+                            <input class="form-control js-bootstrap-date" required name="busterm_start" value="{$edit['busterm_start']}" size="20" autocomplete="off" type="text" id="sex" value="" required="required" placeholder="请输入营业期限">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">营业期限至：</label>
+                        <div class="col-md-8">
+                            <input class="form-control js-bootstrap-date" name="busterm_end" value="{$edit['busterm_end']}" size="20" autocomplete="off" type="text" id="sex" value="" placeholder="请输入营业期限">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">行业：</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="industry" value="{$edit['industry']}" id="sex" required="required"  placeholder="请输入行业">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right" style="height: 80px">经营内容：</label>
+                        <div class="col-md-8" style="height: 80px">
+                            <textarea class="form-control" name="management" id="sex" required="required"  placeholder="请输入经营内容" style="height:80px">{$edit['management']}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sex" class="col-md-4 control-label text-right">住所：</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="place" id="sex" value="{$edit['place']}" required="required"  placeholder="请输入注册">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label text-right">经营情况异常</label>
+                        <div class="col-md-8">
+                            <select class="form-control" name="is_abnormal">
+                                <option value="">请选择</option>
+                                <option value="0" <if condition="$edit['is_abnormal'] eq 0">selected="selected"</if>>经营正常</option>
+                                <option value="1" <if condition="$edit['is_abnormal'] eq 1">selected="selected"</if>>经营异常</option>
+                            </select>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="form-group business">
+                <label for="sex">异常企业备注</label>
+                <input type="text" name="abnormal_mark" class="form-control"  id="sex" placeholder="备注">
+            </div>
+        </div>
+        <div id="btn">
+            <button class="btn btn-default js-ajax-submit" type="submit" >确认编辑</button>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+.login-wrap{background:#131b46 url(../../images/loginBg.jpg) no-repeat center center;}
+.login-wrap .wrap{ position:relative;}
+.login-wrap .logo{ height:98px;}
+.logoBox{ width:390px; padding:24px 43px 46px; background:rgba(33,45,109,0.9); border-radius:5px; *filter:alpha(opacity=50); position:absolute; right:0; top:50%; margin-top:-255px; z-index: 999;}
+.logoBox h1{ padding:0 0 20px;}
+
+
+
+.logoBox .form-group{ position:relative; margin-bottom:28px;}
+.logoBox .form-group i{ display:inline-block; position:absolute; top:12px; left:12px; width:20px; height:21px;background:url(../../images/login-ico.png) no-repeat;}
+.logoBox .form-group i.ico01{ background-position: 0 0;}
+.logoBox .form-group i.ico02{ background-position: 0 -21px;}
+.logoBox .form-group i.ico03{ background-position: 0 -42px;}
+.logoBox .form-control{ border-radius:5px; height:47px; line-height:47px; padding:0 0 0 38px; font-size:16px;}
+.logoBox .verify_img{ position:absolute;cursor:pointer;right:1px;top:1px; width:102px; border-radius:5px; height:45px;}
+.logoBox .btn-primary{ background:#1b6bff; height:48px; line-height:48px; color:#fff; border:0; font-size:18px; padding:0; border-radius:8px;}
+.logoBox .btn-primary.active,.logoBox .btn-primary:active{ background:#009bdf;}
+
+.aimg{ position:absolute; left:50%; top:50%;}
+.d1{ margin-left:-505px; margin-top:15px; -webkit-animation:movedot 15s infinite linear; -moz-animation:movedot 15s infinite linear; -o-animation:movedot 15s infinite linear; animation:movedot 15s infinite linear;}
+.d2{ margin-left:15px; margin-top:-235px; -webkit-animation:movedot 10s infinite linear; -moz-animation:movedot 10s infinite linear; -o-animation:movedot 10s infinite linear; animation:movedot 10s infinite linear;}
+.yd1{ margin-left:-480px; margin-top:-90px; -webkit-animation:slideUp 1.5s forwards ease-in-out; animation:slideUp 1.5s forwards ease-in-out;}
+.yd2{ margin-left:95px; margin-top:90px; -webkit-animation:slideUp 2.5s forwards ease-in-out; animation:slideUp 2.5s forwards ease-in-out;}
+.bd{ margin-left:-260px; margin-top:-25px; -webkit-animation:slideUp 1.2s forwards ease-in-out; animation:slideUp 1.2s forwards ease-in-out;}
+.t1{ width:52px;height:230px; background:url(../../images/t1.png) no-repeat; margin-left:-600px; margin-top:-125px; -webkit-animation:slideUp 0.8s forwards ease-in-out; animation:slideUp 0.8s forwards ease-in-out;}
+.t2{ width:63px;height:321px; background:url(../../images/t2.png) no-repeat; margin-left:-398px; margin-top:-205px; -webkit-animation:slideUp 1.2s forwards ease-in-out; animation:slideUp 1.2s forwards ease-in-out;}
+.t3{ width:63px;height:279px; background:url(../../images/t3.png) no-repeat; margin-left:-200px; margin-top:-125px; -webkit-animation:slideUp 1.6s forwards ease-in-out; animation:slideUp 1.6s forwards ease-in-out;}
+.t4{ width:63px;height:276px; background:url(../../images/t4.png) no-repeat; margin-left:-65px; margin-top:-5px; -webkit-animation:slideUp 2s forwards ease-in-out; animation:slideUp 2s forwards ease-in-out;}
+.aimg .c{ display:inline-block; width:63px; height:63px; background:url(../../images/c.png) no-repeat; -webkit-animation:infinite-spinning 30s infinite linear; animation:infinite-spinning 30s infinite linear}
+.aimg .c2{ display:inline-block; width:52px; height:52px; background:url(../../images/c2.png) no-repeat; -webkit-animation:infinite-spinning 30s infinite linear; animation:infinite-spinning 30s infinite linear}
+
+@media screen and (max-width:425px) {
+    .container{ width:100%;}
+    .login-head{height:4em;}
+    .login-wrap .logo{ text-align: center;height:4em; line-height: 4em;}
+    .logoBox{ height: 84%; background-size:100% 100%; width:80%; padding: 0 6%; margin-right: -40%; right: 50%; margin-top:0; top: 10%; }
+    .logoBox h1{ font-size: 1.5em; padding: 1.5rem 0;}
+    .logoBox .btn-primary{ height: 2.2em; line-height: 2.2em; font-size: 1.3em;}
+    .animateBox{ display:none;}
+  }
+  
+  @-webkit-keyframes movedot { 
+    0% { top:50%;}
+   50% { top:60%;}
+  100% { top:50%;}
+  }
+  @keyframes movedot { 
+    0% { top:50%;}
+   50% { top:60%;}
+  100% { top:50%;}
+  }
+  @-webkit-keyframes slideUp {  
+    0% { -webkit-transform:translateY(100px); transform:translateY(100px)}
+  100% { -webkit-transform:translateY(0); transform:translateY(0)}
+  }
+  @keyframes slideUp {  
+    0% { -webkit-transform:translateY(100px); transform:translateY(100px)}
+  100% { -webkit-transform:translateY(0); transform:translateY(0)}
+  }
+  @-webkit-keyframes infinite-spinning { 
+  from { -webkit-transform:rotate(0deg); transform:rotate(0deg)}
+    to { -webkit-transform:rotate(360deg); transform:rotate(360deg)}
+  }
+  
+  @keyframes infinite-spinning { 
+  from { -webkit-transform:rotate(0deg); transform:rotate(0deg)}
+    to { -webkit-transform:rotate(360deg); transform:rotate(360deg) }
+  }
+
+  #btnSendCode{ position:absolute; right:5px; top:6px; background:#1b6bff; border:none; padding:5px 10px; color:#fff; border-radius:30px; line-height:25px; font-size:14px;}
+
+
+
